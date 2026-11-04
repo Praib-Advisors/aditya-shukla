@@ -48,7 +48,7 @@ export function HeroSlider({ children, labels }: { children: React.ReactNode; la
     <section
       aria-roledescription="carousel"
       aria-label={labels.region}
-      className="relative h-[min(calc(100svh-3.5rem),177vw)] min-h-[32rem] overflow-hidden bg-navy md:h-[min(calc(100svh-4rem),56.25vw)] md:min-h-[34rem]"
+      className="relative aspect-[9/16] overflow-hidden bg-navy landscape:aspect-video md:aspect-video"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}

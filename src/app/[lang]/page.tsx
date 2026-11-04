@@ -43,28 +43,28 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
       <h1 className="sr-only">{site.name[lang]}, {site.role[lang]}</h1>
       <HeroSlider labels={{ prev: "Previous slide", next: "Next slide", slide: "Slide", region: "Featured" }}>
         {/* Slide 1: the supplied banners. The tall one is used on phones, the wide one from tablet width up. */}
-        <picture>
-          <source media="(min-width: 768px)" srcSet="/hero/slide1-desktop.jpg" />
+        <picture className="block size-full">
+          <source media="(min-width: 768px), (orientation: landscape)" srcSet="/hero/slide1-desktop.jpg" />
           <img
             src="/hero/slide1-mobile.jpg"
             alt={`${site.name[lang]}, ${site.role[lang]}`}
             width={1080}
             height={1920}
             fetchPriority="high"
-            className="hero-in size-full object-cover object-[50%_30%] md:object-[70%_50%]"
+            className="hero-in size-full origin-bottom object-cover max-md:scale-[1.05] md:origin-center md:scale-100"
           />
         </picture>
 
-        {/* Slide 2: the second supplied banner pair. The banner carries its own line of text near the bottom. */}
-        <picture>
-          <source media="(min-width: 768px)" srcSet="/hero/slide2-desktop.jpg" />
+        {/* Slide 2 uses artwork sized to the carousel's portrait and landscape aspect ratios. */}
+        <picture className="block size-full">
+          <source media="(min-width: 768px), (orientation: landscape)" srcSet="/hero/slide2-desktop.jpg" />
           <img
             src="/hero/slide2-mobile.jpg"
             alt={t("Dr. Aditya Shukla with leaders, under the line “BJP by Birth, Dedicated to Public Service”", "नेताओं के साथ डॉ. आदित्य शुक्ला, पंक्ति “BJP by Birth, Dedicated to Public Service” के साथ")}
             width={1080}
             height={1920}
             loading="lazy"
-            className="size-full object-cover object-[50%_100%]"
+            className="size-full origin-bottom object-cover max-md:scale-[1.05] md:origin-center md:scale-100"
           />
         </picture>
       </HeroSlider>
