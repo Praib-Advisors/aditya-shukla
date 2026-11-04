@@ -1,19 +1,30 @@
 "use client";
 
-import { Children, useEffect, useRef, useState } from "react";
+import { Children, isValidElement, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 /**
  * Cross-fading hero slider. Autoplays every 7s, pauses on hover or keyboard focus, and does not autoplay at
  * all when the visitor prefers reduced motion. Slides that are not showing are inert, so keyboard users and
- * screen readers only meet the current one.
+ * screen readers only meet the current one. A slide marked data-desktop-only is left out below the md breakpoint
+ * (it has no phone version), and with one slide left the arrows and dots disappear.
  */
+const wideQuery = "(min-width: 768px)";
+const onWide = (cb: () => void) => {
+  const q = window.matchMedia(wideQuery);
+  q.addEventListener("change", cb);
+  return () => q.removeEventListener("change", cb);
+};
 export function HeroSlider({ children, labels }: { children: React.ReactNode; labels: { prev: string; next: string; slide: string; region: string } }) {
-  const slides = Children.toArray(children);
-  const [i, setI] = useState(0);
+  const wide = useSyncExternalStore(onWide, () => window.matchMedia(wideQuery).matches, () => false);
+  const slides = Children.toArray(children).filter(
+    (c) => wide || !(isValidElement(c) && (c.props as { "data-desktop-only"?: boolean })["data-desktop-only"]),
+  );
+  const [i0, setI] = useState(0);
   const [paused, setPaused] = useState(false);
   const [reduce, setReduce] = useState(true);
   const n = slides.length;
+  const i = Math.min(i0, n - 1);
   const swipeX = useRef<number | null>(null);
 
   useEffect(() => {
@@ -69,7 +80,7 @@ export function HeroSlider({ children, labels }: { children: React.ReactNode; la
         <>
           <button type="button" onClick={() => go(-1)} aria-label={labels.prev} className={`${arrow} left-3 lg:left-6`}><ChevronLeft size={20} /></button>
           <button type="button" onClick={() => go(1)} aria-label={labels.next} className={`${arrow} right-3 lg:right-6`}><ChevronRight size={20} /></button>
-          <div className="absolute inset-x-0 bottom-4 z-20 flex justify-center gap-2.5">
+          <div className="absolute bottom-4 left-5 z-20 flex gap-2.5 md:left-10">
             {slides.map((_, k) => (
               <button
                 key={k}
