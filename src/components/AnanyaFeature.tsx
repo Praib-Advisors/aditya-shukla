@@ -28,7 +28,7 @@ export function AnanyaFeature({ lang, link = false, as: Tag = "h2" }: { lang: La
                 alt={t("A group of women seated together outdoors, smiling with their fists raised", "बाहर एक साथ बैठी महिलाओं का समूह, मुस्कुराते हुए मुट्ठियाँ उठाए")}
                 fill
                 sizes="(min-width:1024px) 48vw, 92vw"
-                quality={90}
+                quality={85}
                 className="object-cover object-[50%_40%]"
               />
             </div>

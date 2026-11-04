@@ -37,7 +37,7 @@ export default async function LangLayout({ children, params }: { children: React
   const lang: Lang = raw;
 
   return (
-    <html lang={lang} className={`${serifLatin.variable} ${sansLatin.variable}`}>
+    <html lang={lang} data-scroll-behavior="smooth" className={`${serifLatin.variable} ${sansLatin.variable}`}>
       <body>
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-gold focus:px-4 focus:py-2 focus:text-navy">
           {ui.skip[lang]}
