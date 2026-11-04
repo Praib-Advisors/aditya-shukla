@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { href, type Lang } from "@/lib/i18n";
 import { nav, ui } from "@/content/ui";
@@ -24,10 +24,40 @@ export function Navbar({ lang }: { lang: Lang }) {
     };
   }, [open]);
 
+  // Thin gold line along the bottom edge of the bar that fills as the page is read.
+  const bar = useRef<HTMLSpanElement>(null);
   useEffect(() => {
-    const on = () => setScrolled(window.scrollY > 8);
-    window.addEventListener("scroll", on, { passive: true });
-    return () => window.removeEventListener("scroll", on);
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      if (bar.current) bar.current.style.transform = `scaleX(${p})`;
+      setScrolled(window.scrollY > 8);
+    };
+    const queue = () => { if (!raf) raf = requestAnimationFrame(update); };
+    update();
+    window.addEventListener("scroll", queue, { passive: true });
+    window.addEventListener("resize", queue);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", queue);
+      window.removeEventListener("resize", queue);
+    };
+  }, [pathname]);
+
+  // One gold underline that glides to the link under the pointer, and back to the current page when it leaves.
+  const items = useRef<(HTMLAnchorElement | null)[]>([]);
+  const mark = useRef<HTMLSpanElement>(null);
+  const place = useCallback((el: HTMLElement | null) => {
+    const m = mark.current;
+    if (!m) return;
+    if (!el) { m.style.opacity = "0"; return; }
+    m.style.opacity = "1";
+    const box = m.parentElement!.getBoundingClientRect();
+    const r = el.getBoundingClientRect();
+    m.style.width = `${r.width - 40}px`;
+    m.style.transform = `translateX(${r.left - box.left + 20}px)`;
   }, []);
 
   const isActive = (slug: string) => {
@@ -37,6 +67,14 @@ export function Navbar({ lang }: { lang: Lang }) {
 
   const links = nav.filter((n) => n.slug !== "contact");
   const contact = nav.find((n) => n.slug === "contact")!;
+  const activeIndex = links.findIndex((n) => isActive(n.slug));
+
+  useEffect(() => {
+    const home = () => place(items.current[activeIndex] ?? null);
+    home();
+    window.addEventListener("resize", home);
+    return () => window.removeEventListener("resize", home);
+  }, [activeIndex, place]);
 
   return (
     <header
@@ -57,14 +95,19 @@ export function Navbar({ lang }: { lang: Lang }) {
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center xl:flex">
-          <ul className="flex items-center">
+          <ul className="relative flex items-center" onMouseLeave={() => place(items.current[activeIndex] ?? null)}>
+            <span ref={mark} aria-hidden className="pointer-events-none absolute bottom-0.5 left-0 h-0.5 bg-gold opacity-0 transition-[transform,width,opacity] duration-500 ease-[cubic-bezier(.22,1,.36,1)]" />
             {links.map((n, i) => (
               <li key={n.slug} className="nav-item" style={{ ["--i" as string]: i }}>
                 <Link
+                  ref={(el) => { items.current[i] = el; }}
                   href={href(lang, n.slug)}
                   aria-current={isActive(n.slug) ? "page" : undefined}
-                  className={`group relative block whitespace-nowrap rounded-sm px-5 py-2 text-[1.02rem] tracking-[.005em] transition duration-300 after:absolute after:inset-x-5 after:bottom-0.5 after:h-0.5 after:origin-left after:bg-gold after:transition-transform after:duration-300 after:ease-out hover:-translate-y-px hover:bg-navy/[.06] hover:text-navy hover:after:scale-x-100  ${
-                    isActive(n.slug) ? "font-medium text-navy after:scale-x-100" : "text-navy/75 after:scale-x-0"
+                  onMouseEnter={(e) => place(e.currentTarget)}
+                  onFocus={(e) => place(e.currentTarget)}
+                  onBlur={() => place(items.current[activeIndex] ?? null)}
+                  className={`group relative block whitespace-nowrap rounded-sm px-5 py-2 text-[1.02rem] tracking-[.005em] transition duration-300 hover:-translate-y-px hover:bg-navy/[.06] hover:text-navy ${
+                    isActive(n.slug) ? "font-medium text-navy" : "text-navy/75"
                   }`}
                 >
                   {n.label[lang]}
@@ -129,6 +172,8 @@ export function Navbar({ lang }: { lang: Lang }) {
           ))}
         </ul>
       </nav>
+
+      <span ref={bar} aria-hidden className="pointer-events-none absolute -bottom-px left-0 h-[2px] w-full origin-left scale-x-0 bg-gold" />
     </header>
   );
 }

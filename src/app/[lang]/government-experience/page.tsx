@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getLang } from "@/lib/page";
 import { pageMeta } from "@/lib/seo";
 import { governmentDuties } from "@/content/profile";
+import { Reveal } from "@/components/Reveal";
 import { PageHeader, Pic, SectionHead } from "@/components/parts";
 
 const title = { en: "Government Experience", hi: "सरकारी अनुभव" };
@@ -38,7 +39,7 @@ export default async function Government({ params }: { params: Promise<{ lang: s
           <ol className="mt-6 border-t border-navy/20">
             {governmentDuties.map((d, i) => (
               <li key={i} className="border-b border-navy/20 py-6">
-                <div><h3 className="text-xl">{d.title[lang]}</h3><p className="mt-1">{d.body[lang]}</p></div>
+                <Reveal variant="right" delay={(i % 3) * 80}><h3 className="text-xl">{d.title[lang]}</h3><p className="mt-1">{d.body[lang]}</p></Reveal>
               </li>
             ))}
           </ol>

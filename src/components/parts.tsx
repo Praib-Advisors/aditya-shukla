@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { href, type Lang, type L } from "@/lib/i18n";
 import { photoById } from "@/content/media";
+import { MaskText } from "@/components/MaskText";
 import { Reveal } from "@/components/Reveal";
 
 /** A catalogue photograph, sized from its real dimensions so nothing shifts while loading. */
@@ -31,10 +32,10 @@ export function SectionHead({
   title, lead, dark = false, className = "", eyebrow,
 }: { title: string; lead?: string; dark?: boolean; className?: string; eyebrow?: string }) {
   return (
-    <Reveal className={className}>
+    <Reveal variant="fade" className={className}>
       {eyebrow && <p className={`eyebrow ${dark ? "eyebrow-dark" : ""}`}>{eyebrow}</p>}
-      <h2 className={`max-w-3xl text-[clamp(1.9rem,4vw,3rem)] leading-[1.12] ${dark ? "!text-ivory" : ""}`}>{title}</h2>
-      <span aria-hidden className="mt-6 block h-px w-16 bg-gold" />
+      <h2 className={`max-w-3xl text-[clamp(1.9rem,4vw,3rem)] leading-[1.12] ${dark ? "!text-ivory" : ""}`}><MaskText>{title}</MaskText></h2>
+      <span aria-hidden className="mt-6 block h-px w-16 origin-left bg-gold transition-transform duration-1000 delay-300 ease-[cubic-bezier(.22,1,.36,1)] group-data-[state=hidden]/r:scale-x-0" />
       {lead && <p className={`mt-5 max-w-2xl text-lg ${dark ? "text-ivory/75" : ""}`}>{lead}</p>}
     </Reveal>
   );

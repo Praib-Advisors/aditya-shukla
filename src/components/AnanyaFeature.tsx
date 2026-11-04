@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { Lang } from "@/lib/i18n";
 import { TextLink } from "@/components/parts";
 import { Reveal } from "@/components/Reveal";
+import { Parallax } from "@/components/Parallax";
 
 /**
  * The Ananya Foundation feature: a photograph on one side, the foundation's details on a navy panel on the
@@ -21,8 +22,8 @@ export function AnanyaFeature({ lang, link = false, as: Tag = "h2" }: { lang: La
     <section className="bg-[#F7F3EC]">
       <div className="wrap py-20 md:py-28">
         <div className="grid items-center lg:grid-cols-12">
-          <Reveal className="relative lg:col-span-6 lg:col-start-1 lg:row-start-1">
-            <div className="relative aspect-[4/3] overflow-hidden bg-[#E8E0D2] shadow-[0_40px_70px_-40px_rgba(23,43,64,.6)] lg:aspect-auto lg:h-[36rem]">
+          <Reveal variant="mask" className="relative lg:col-span-6 lg:col-start-1 lg:row-start-1">
+            <Parallax className="aspect-[4/3] bg-[#E8E0D2] shadow-[0_40px_70px_-40px_rgba(23,43,64,.6)] lg:aspect-auto lg:h-[36rem]">
               <Image
                 src="/photos/women-empowerment.jpg"
                 alt={t("A group of women seated together outdoors, smiling with their fists raised", "बाहर एक साथ बैठी महिलाओं का समूह, मुस्कुराते हुए मुट्ठियाँ उठाए")}
@@ -31,10 +32,10 @@ export function AnanyaFeature({ lang, link = false, as: Tag = "h2" }: { lang: La
                 quality={85}
                 className="object-cover object-[50%_40%]"
               />
-            </div>
+            </Parallax>
           </Reveal>
 
-          <Reveal delay={150} className="relative z-10 -mt-8 mx-4 sm:mx-10 lg:col-span-7 lg:col-start-6 lg:row-start-1 lg:mx-0 lg:mt-0">
+          <Reveal variant="left" delay={200} className="relative z-10 -mt-8 mx-4 sm:mx-10 lg:col-span-7 lg:col-start-6 lg:row-start-1 lg:mx-0 lg:mt-0">
             <div className="border border-[#B58A43]/30 bg-[#E8E0D2] p-8 text-navy shadow-[0_40px_80px_-44px_rgba(23,43,64,.5)] sm:p-12 lg:py-14 lg:pl-20 lg:pr-14">
               <p className="flex items-center gap-4 text-[.72rem] font-semibold uppercase tracking-[.3em] text-[#8a6b3a]">
                 <span aria-hidden className="h-px w-10 bg-[#8a6b3a]" />

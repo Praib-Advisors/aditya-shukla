@@ -4,6 +4,7 @@ import { pageMeta } from "@/lib/seo";
 import { bioLong } from "@/content/profile";
 import { PageHeader, Pic, TextLink } from "@/components/parts";
 import { PhotoSlider } from "@/components/PhotoSlider";
+import { Reveal } from "@/components/Reveal";
 
 const title = { en: "About Dr. Aditya Shukla", hi: "डॉ. आदित्य शुक्ला के बारे में" };
 
@@ -38,8 +39,8 @@ export default async function About({ params }: { params: Promise<{ lang: string
 
         {/* Biography, level with the top of the photographs */}
         <div className="prose-ed lg:col-span-6 lg:col-start-7">
-          <p className="lead !max-w-none">{paras[0]}</p>
-          <div className="mt-10">{paras.slice(1).map((p, i) => <p key={i}>{p}</p>)}</div>
+          <Reveal><p className="lead !max-w-none">{paras[0]}</p></Reveal>
+          <div className="mt-10">{paras.slice(1).map((p, i) => <Reveal key={i}><p>{p}</p></Reveal>)}</div>
           <p className="mt-2 text-sm">{lang === "en" ? "Languages: Hindi, English (fluent) and French." : "भाषाएँ: हिंदी, अंग्रेज़ी (धाराप्रवाह) और फ़्रेंच।"}</p>
           <div className="mt-10 flex flex-wrap gap-x-8 gap-y-2">
             <TextLink lang={lang} to="professional-journey">{lang === "en" ? "Professional journey" : "व्यावसायिक यात्रा"}</TextLink>

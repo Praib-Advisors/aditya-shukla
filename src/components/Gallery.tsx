@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Play, X } from "lucide-react";
 import type { Category, Photo, Video } from "@/content/media";
 import type { Lang, L } from "@/lib/i18n";
+import { Reveal } from "@/components/Reveal";
 
 type Item =
   | ({ kind: "photo" } & Photo)
@@ -104,10 +105,11 @@ export function Gallery({
             </div>
 
             <ul className="jgrid">
-              {g.items.map((it) => {
+              {g.items.map((it, n) => {
                 const i = ++index;
                 return (
                   <li key={`${it.kind}-${it.id}`} className="jtile" style={{ ["--r" as string]: ratio(it) }}>
+                    <Reveal variant="mask" delay={(n % 4) * 90} className="size-full">
                     <button
                       type="button"
                       onClick={(e) => {
@@ -126,7 +128,7 @@ export function Gallery({
                           sizes="(min-width:1024px) 30vw, (min-width:480px) 45vw, 92vw"
                           quality={75}
                           loading="lazy"
-                          className="size-full object-cover transition duration-700 group-hover:scale-[1.04]"
+                          className="size-full object-cover transition duration-700 ease-out group-hover:scale-[1.03]"
                         />
                       ) : (
                         <>
@@ -139,6 +141,7 @@ export function Gallery({
                         {it.date && <span className="block text-[.7rem] text-gold">{it.date[lang]}</span>}
                       </span>
                     </button>
+                    </Reveal>
                   </li>
                 );
               })}

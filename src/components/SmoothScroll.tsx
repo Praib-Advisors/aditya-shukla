@@ -22,6 +22,7 @@ export function SmoothScroll() {
       anchors: { offset: -72 },
     });
     lenisRef.current = lenis;
+    (window as unknown as { __lenis?: Lenis }).__lenis = lenis; // used by the back-to-top button
     let raf = 0;
     const tick = (time: number) => {
       lenis.raf(time);
@@ -32,6 +33,7 @@ export function SmoothScroll() {
       cancelAnimationFrame(raf);
       lenis.destroy();
       lenisRef.current = null;
+      delete (window as unknown as { __lenis?: Lenis }).__lenis;
     };
   }, []);
 

@@ -1,6 +1,7 @@
 import { CalendarCheck, Landmark, MapPin, Scale } from "lucide-react";
 import type { Lang, L } from "@/lib/i18n";
 import { CountUp } from "@/components/CountUp";
+import { Reveal } from "@/components/Reveal";
 
 /**
  * Every figure here is counted from the supplied CV and biodata, nothing else. Add a figure only when a
@@ -39,10 +40,11 @@ export function Stats({ lang }: { lang: Lang }) {
         </div>
 
         <dl className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {stats.map((s) => {
+          {stats.map((s, i) => {
             const Icon = s.icon;
             return (
-              <div key={s.title.en} className="group relative flex flex-col border border-white/15 bg-white/[.03] p-8 transition duration-500 hover:-translate-y-1.5 hover:border-gold/70 hover:bg-white/[.06]">
+              <Reveal key={s.title.en} delay={i * 120} className="h-full">
+              <div className="group relative flex h-full flex-col border border-white/15 bg-white/[.03] p-8 transition duration-500 hover:-translate-y-1.5 hover:border-gold/70 hover:bg-white/[.06]">
                 <span aria-hidden className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-gold transition-transform duration-500 group-hover:scale-x-100" />
                 <span aria-hidden className="grid size-11 place-items-center border border-gold/60 text-gold transition group-hover:bg-gold group-hover:text-navy"><Icon size={20} strokeWidth={1.5} /></span>
                 <dt className="mt-8 font-serif text-[clamp(4.5rem,8vw,6.5rem)] leading-none text-gold">
@@ -53,6 +55,7 @@ export function Stats({ lang }: { lang: Lang }) {
                   <span className="mt-2 block text-[.9rem] leading-relaxed text-ivory/65">{s.detail[lang]}</span>
                 </dd>
               </div>
+              </Reveal>
             );
           })}
         </dl>

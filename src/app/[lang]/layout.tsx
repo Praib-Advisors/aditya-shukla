@@ -8,6 +8,7 @@ import { ui } from "@/content/ui";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { SmoothScroll } from "@/components/SmoothScroll";
+import { BackToTop } from "@/components/BackToTop";
 import { JsonLd } from "@/components/JsonLd";
 import { personLd, websiteLd } from "@/lib/seo";
 
@@ -46,6 +47,7 @@ export default async function LangLayout({ children, params }: { children: React
         <Navbar lang={lang} />
         <main id="main">{children}</main>
         <Footer lang={lang} />
+        <BackToTop lang={lang} />
         <JsonLd data={[websiteLd(lang), personLd(lang)]} />
       </body>
     </html>
