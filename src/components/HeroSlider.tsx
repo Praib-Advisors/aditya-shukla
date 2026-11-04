@@ -1,0 +1,90 @@
+"use client";
+
+import { Children, useEffect, useRef, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+/**
+ * Cross-fading hero slider. Autoplays every 7s, pauses on hover or keyboard focus, and does not autoplay at
+ * all when the visitor prefers reduced motion. Slides that are not showing are inert, so keyboard users and
+ * screen readers only meet the current one.
+ */
+export function HeroSlider({ children, labels }: { children: React.ReactNode; labels: { prev: string; next: string; slide: string; region: string } }) {
+  const slides = Children.toArray(children);
+  const [i, setI] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [reduce, setReduce] = useState(true);
+  const n = slides.length;
+  const swipeX = useRef<number | null>(null);
+
+  useEffect(() => {
+    const q = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const on = () => setReduce(q.matches);
+    on();
+    q.addEventListener("change", on);
+    return () => q.removeEventListener("change", on);
+  }, []);
+
+  useEffect(() => {
+    if (paused || reduce || n < 2) return;
+    const t = setInterval(() => setI((v) => (v + 1) % n), 7000);
+    return () => clearInterval(t);
+  }, [paused, reduce, n]);
+
+  const go = (d: number) => setI((v) => (v + d + n) % n);
+  const arrow = "absolute top-1/2 z-20 hidden size-11 -translate-y-1/2 place-items-center border border-gold/60 bg-navy/70 text-ivory transition duration-300 hover:bg-gold hover:text-navy active:scale-95 sm:grid";
+
+  return (
+    <section
+      aria-roledescription="carousel"
+      aria-label={labels.region}
+      className="relative h-[min(calc(100svh-3.5rem),177vw)] min-h-[32rem] overflow-hidden bg-navy md:h-[min(calc(100svh-4rem),56.25vw)] md:min-h-[34rem]"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
+      // Swipe left or right on a touch screen to change slide.
+      onTouchStart={(e) => { swipeX.current = e.touches[0].clientX; }}
+      onTouchEnd={(e) => {
+        if (swipeX.current === null || n < 2) return;
+        const dx = e.changedTouches[0].clientX - swipeX.current;
+        swipeX.current = null;
+        if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1);
+      }}
+    >
+      {slides.map((s, k) => (
+        <div
+          key={k}
+          role="group"
+          aria-roledescription="slide"
+          aria-label={`${labels.slide} ${k + 1} / ${n}`}
+          aria-hidden={k !== i}
+          inert={k !== i}
+          className={`absolute inset-0 transition-opacity duration-[1200ms] ease-[cubic-bezier(.4,0,.2,1)] ${k === i ? "z-10 opacity-100" : "z-0 opacity-0"}`}
+        >
+          {s}
+        </div>
+      ))}
+
+      {n > 1 && (
+        <>
+          <button type="button" onClick={() => go(-1)} aria-label={labels.prev} className={`${arrow} left-3 lg:left-6`}><ChevronLeft size={20} /></button>
+          <button type="button" onClick={() => go(1)} aria-label={labels.next} className={`${arrow} right-3 lg:right-6`}><ChevronRight size={20} /></button>
+          <div className="absolute inset-x-0 bottom-4 z-20 flex justify-center gap-2.5">
+            {slides.map((_, k) => (
+              <button
+                key={k}
+                type="button"
+                onClick={() => setI(k)}
+                aria-label={`${labels.slide} ${k + 1}`}
+                aria-current={k === i}
+                className="grid h-6 w-8 place-items-center"
+              >
+                <span className={`h-[3px] w-full transition-all duration-300 ${k === i ? "bg-gold" : "bg-navy/40 hover:bg-gold/70"}`} />
+              </button>
+            ))}
+          </div>
+        </>
+      )}
+    </section>
+  );
+}
