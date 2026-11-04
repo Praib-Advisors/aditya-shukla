@@ -61,7 +61,6 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         <div className="wrap grid gap-y-14 py-20 md:py-28 lg:grid-cols-12 lg:gap-x-10">
           <div className="relative lg:sticky lg:top-24 lg:col-span-5 lg:self-start">
             <Reveal variant="mask" className="relative">
-              <div aria-hidden className="absolute -bottom-4 -left-4 hidden size-full border border-gold/70 lg:block" />
               <div className="relative aspect-[3/4] overflow-hidden bg-sand shadow-[0_30px_60px_-30px_rgba(23,43,64,.55)]">
                 {/* The source frame is a wide courthouse shot with him small at the lower right; zoom onto him. */}
                 <Pic id="supreme-court-steps" lang={lang} sizes="(min-width:1024px) 38vw, 92vw" className="size-full origin-[67%_78%] scale-[1.7] object-cover" position="50% 50%" />
@@ -69,7 +68,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             </Reveal>
           </div>
           <div className="lg:col-span-6 lg:col-start-7 lg:pt-16">
-            <SectionHead eyebrow={t("01 · Profile", "01 · परिचय")} title={t("Law, public administration and industry", "विधि, लोक प्रशासन और उद्योग")} />
+            <SectionHead title={t("Law, public administration and industry", "विधि, लोक प्रशासन और उद्योग")} />
             <Reveal delay={150}><p className="lead mt-8">{bioShort[lang]}</p></Reveal>
             <dl className="mt-10 divide-y divide-navy/15 border-y border-navy/15 text-[.95rem]">
               {[
@@ -93,7 +92,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
       <section className="bg-sand">
         <div className="wrap py-24 md:py-32">
           <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
-            <SectionHead eyebrow={t("02 · Industry body", "02 · उद्योग संगठन")} title={t("NAREDCO Uttar Pradesh in 2026", "NAREDCO उत्तर प्रदेश, 2026")} />
+            <SectionHead title={t("NAREDCO Uttar Pradesh in 2026", "NAREDCO उत्तर प्रदेश, 2026")} />
             <TextLink lang={lang} to="leadership">{t("All chapter activity", "चैप्टर की सभी गतिविधियाँ")}</TextLink>
           </div>
           <ul className="grid items-start gap-10 md:grid-cols-12">
@@ -125,7 +124,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
       {/* Professional journey: horizontal timeline */}
       <section className="bg-ivory">
         <div className="wrap py-24 md:py-32">
-          <SectionHead eyebrow={t("03 · Journey", "03 · यात्रा")} title={t("Appointments and milestones", "नियुक्तियाँ और पड़ाव")} />
+          <SectionHead align="center" title={t("Appointments and milestones", "नियुक्तियाँ और पड़ाव")} />
           <div className="mt-14"><JourneyTimeline lang={lang} items={timeline} /></div>
           <div className="mt-6"><TextLink lang={lang} to="professional-journey">{ui.viewAll[lang]}</TextLink></div>
         </div>
@@ -136,7 +135,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
       {/* Government experience: statement above a ruled grid, no photograph */}
       <section className="pilasters bg-navy text-ivory">
         <div className="wrap py-24 md:py-32">
-          <SectionHead dark eyebrow={t("04 · Government", "04 · सरकार")} title={t("Ministry of Housing and Urban Affairs", "आवासन और शहरी कार्य मंत्रालय")} />
+          <SectionHead dark size="lg" label={t("Government service", "सरकारी सेवा")} title={t("Ministry of Housing and Urban Affairs", "आवासन और शहरी कार्य मंत्रालय")} />
           <p className="mt-6 max-w-2xl text-lg text-ivory/80">
             {t("From July 2021 to June 2024 he was Additional Private Secretary to the Minister of State.", "जुलाई 2021 से जून 2024 तक वे राज्य मंत्री के अपर निजी सचिव रहे।")}
           </p>
@@ -159,7 +158,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
       {/* Legal and academic: heading beside a ruled 2x2 */}
       <section className="wrap grid gap-12 py-24 md:py-32 lg:grid-cols-12">
         <div className="lg:col-span-5">
-          <SectionHead eyebrow={t("05 · Law and academia", "05 · विधि एवं शिक्षा")} title={t("Legal and academic profile", "विधिक और शैक्षणिक परिचय")} />
+          <SectionHead title={t("Legal and academic profile", "विधिक और शैक्षणिक परिचय")} />
           <div className="mt-8"><TextLink lang={lang} to="legal-academic">{ui.readMore[lang]}</TextLink></div>
         </div>
         <ul className="grid gap-px bg-navy/15 sm:grid-cols-2 lg:col-span-7">
@@ -186,7 +185,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
       <section className="wrap py-24 md:py-32">
         <div className="grid gap-12 md:grid-cols-2 md:gap-0 md:divide-x md:divide-navy/20">
           <div className="md:pr-12 lg:pr-20">
-            <SectionHead eyebrow={t("06 · Corporate", "06 · कॉर्पोरेट")} title={t("Corporate engagements", "कॉर्पोरेट दायित्व")} />
+            <SectionHead title={t("Corporate engagements", "कॉर्पोरेट दायित्व")} />
             <dl className="mt-8 divide-y divide-navy/15 border-y border-navy/15">
               <div className="py-4"><dt className="font-serif text-xl text-navy">{t("Director", "निदेशक")}</dt><dd>GMA Infra Private Limited</dd></div>
               <div className="py-4"><dt className="font-serif text-xl text-navy">{t("Chief Legal Advisor", "मुख्य विधिक सलाहकार")}</dt><dd>{t("Legal and Compliance Cell, Aarnaa Enterprises", "विधिक एवं अनुपालन प्रकोष्ठ, आर्ना एंटरप्राइज़ेज़")}</dd></div>
@@ -209,7 +208,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
       <section className="bg-sand">
         <div className="wrap py-24 md:py-32">
           <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
-            <SectionHead eyebrow={t("07 · Archive", "07 · संग्रह")} title={t("Photographic archive", "छायाचित्र संग्रह")} />
+            <SectionHead title={t("Photographic archive", "छायाचित्र संग्रह")} />
             <TextLink lang={lang} to="media">{ui.viewAll[lang]}</TextLink>
           </div>
           <div className="grid grid-cols-2 gap-3 md:auto-rows-[12rem] md:grid-cols-4">

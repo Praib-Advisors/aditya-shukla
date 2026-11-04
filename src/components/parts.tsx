@@ -29,14 +29,21 @@ export function Pic({
 }
 
 export function SectionHead({
-  title, lead, dark = false, className = "", eyebrow,
-}: { title: string; lead?: string; dark?: boolean; className?: string; eyebrow?: string }) {
+  title, lead, dark = false, className = "", label, align = "left", size = "md",
+}: {
+  title: string; lead?: string; dark?: boolean; className?: string;
+  /** A small plain-text label, only where it adds context. No numbering, no uppercase, no rule. */
+  label?: string;
+  align?: "left" | "center"; size?: "md" | "lg";
+}) {
+  const centre = align === "center";
   return (
-    <Reveal variant="fade" className={className}>
-      {eyebrow && <p className={`eyebrow ${dark ? "eyebrow-dark" : ""}`}>{eyebrow}</p>}
-      <h2 className={`max-w-3xl text-[clamp(1.9rem,4vw,3rem)] leading-[1.12] ${dark ? "!text-ivory" : ""}`}><MaskText>{title}</MaskText></h2>
-      <span aria-hidden className="mt-6 block h-px w-16 origin-left bg-gold transition-transform duration-1000 delay-300 ease-[cubic-bezier(.22,1,.36,1)] group-data-[state=hidden]/r:scale-x-0" />
-      {lead && <p className={`mt-5 max-w-2xl text-lg ${dark ? "text-ivory/75" : ""}`}>{lead}</p>}
+    <Reveal variant="fade" className={`${centre ? "text-center" : ""} ${className}`}>
+      {label && <p className={`mb-2 font-serif text-lg italic ${dark ? "text-gold" : "text-gold-deep"}`}>{label}</p>}
+      <h2 className={`${centre ? "mx-auto" : ""} max-w-3xl leading-[1.12] ${size === "lg" ? "text-[clamp(2.2rem,5vw,3.8rem)]" : "text-[clamp(1.9rem,4vw,3rem)]"} ${dark ? "!text-ivory" : ""}`}>
+        <MaskText>{title}</MaskText>
+      </h2>
+      {lead && <p className={`mt-5 max-w-2xl text-lg ${centre ? "mx-auto" : ""} ${dark ? "text-ivory/75" : ""}`}>{lead}</p>}
     </Reveal>
   );
 }
@@ -49,7 +56,6 @@ export function PageHeader({ lang, title, lead, light = false }: { lang: Lang; t
         <h1 className={`rise max-w-4xl text-[clamp(2.3rem,6vw,4.5rem)] leading-[1.05] ${light ? "" : "!text-ivory"}`}>{title}</h1>
         {lead && <p className={`rise rise-3 mt-6 max-w-2xl text-lg ${light ? "text-[#4a5560]" : "text-ivory/75"}`}>{lead}</p>}
       </div>
-      <hr className="rule-gold" />
     </section>
   );
 }

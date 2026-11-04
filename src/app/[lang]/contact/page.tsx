@@ -25,8 +25,7 @@ export default async function Contact({ params }: { params: Promise<{ lang: stri
       <div className="wrap py-20 md:py-28">
         {/* One centred column: heading, form, then the contact details in a ruled row */}
         <div className="text-center">
-          <span aria-hidden className="mx-auto block h-px w-14 bg-gold" />
-          <h1 className="mx-auto mt-8 max-w-3xl text-[clamp(2.4rem,5.5vw,4.4rem)] leading-[1.06]">{t("Institutional and media enquiries", "संस्थागत एवं मीडिया संबंधी पूछताछ")}</h1>
+          <h1 className="mx-auto max-w-3xl text-[clamp(2.4rem,5.5vw,4.4rem)] leading-[1.06]">{t("Institutional and media enquiries", "संस्थागत एवं मीडिया संबंधी पूछताछ")}</h1>
           <p className="mt-5"><a href={`mailto:${site.email}`} className={`break-all ${link}`}>{site.email}</a></p>
         </div>
 

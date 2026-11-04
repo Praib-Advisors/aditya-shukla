@@ -37,11 +37,8 @@ export function AnanyaFeature({ lang, link = false, as: Tag = "h2" }: { lang: La
 
           <Reveal variant="left" delay={200} className="relative z-10 -mt-8 mx-4 sm:mx-10 lg:col-span-7 lg:col-start-6 lg:row-start-1 lg:mx-0 lg:mt-0">
             <div className="border border-[#B58A43]/30 bg-[#E8E0D2] p-8 text-navy shadow-[0_40px_80px_-44px_rgba(23,43,64,.5)] sm:p-12 lg:py-14 lg:pl-20 lg:pr-14">
-              <p className="flex items-center gap-4 text-[.72rem] font-semibold uppercase tracking-[.3em] text-[#8a6b3a]">
-                <span aria-hidden className="h-px w-10 bg-[#8a6b3a]" />
-                {t("Social Initiatives", "सामाजिक पहल")}
-              </p>
-              <Tag className="mt-6 text-[clamp(2.1rem,4.2vw,3.5rem)] leading-[1.08]">
+              <p className="font-serif text-lg italic text-[#8a6b3a]">{t("Social initiatives", "सामाजिक पहल")}</p>
+              <Tag className="mt-3 text-[clamp(2.1rem,4.2vw,3.5rem)] leading-[1.08]">
                 {t("Empowering Women.", "महिलाओं को सशक्त बनाना।")}<br />
                 <span className="text-[#8a6b3a]">{t("Creating Opportunities.", "अवसरों का सृजन।")}</span>
               </Tag>
