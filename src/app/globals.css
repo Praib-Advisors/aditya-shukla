@@ -107,8 +107,6 @@ html[lang="hi"] .lead { line-height: 1.7; }
 .ph-label strong { display: block; font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--color-gold-deep); margin-bottom: .35rem; }
 html[lang="hi"] .ph-label strong { letter-spacing: .04em; font-size: .85rem; text-transform: none; }
 
-.journey-scroll { scrollbar-width: thin; scrollbar-color: var(--color-gold) transparent; }
-.journey-scroll:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 4px; }
 
 /* Justified photo rows: each tile grows in proportion to its aspect ratio (--r), so a row's photographs share one height. */
 .jgrid { --row: 11rem; display: flex; flex-wrap: wrap; gap: .75rem; }

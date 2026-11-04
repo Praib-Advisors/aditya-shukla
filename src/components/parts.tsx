@@ -3,8 +3,6 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { href, type Lang, type L } from "@/lib/i18n";
 import { photoById } from "@/content/media";
-import type { TimelineItem } from "@/content/profile";
-import { kindLabel } from "@/content/profile";
 import { Reveal } from "@/components/Reveal";
 
 /** A catalogue photograph, sized from its real dimensions so nothing shifts while loading. */
@@ -70,25 +68,5 @@ export function Pending({ lang, title, children }: { lang: Lang; title?: L; chil
       <strong>{title ? title[lang] : lang === "en" ? "Awaiting approval" : "अनुमोदन की प्रतीक्षा"}</strong>
       {children}
     </div>
-  );
-}
-
-export function Timeline({ lang, items }: { lang: Lang; items: TimelineItem[] }) {
-  const tone = { education: "bg-ivory border-navy/40", appointment: "bg-navy border-navy", organisation: "bg-gold border-gold" } as const;
-  return (
-    <ol className="relative ml-2 border-l border-navy/20 md:ml-0 md:border-l-0">
-      <span aria-hidden className="absolute bottom-0 left-[8.25rem] top-0 hidden w-px bg-navy/20 md:block" />
-      {items.map((it, i) => (
-        <li key={i} className="relative grid gap-1 pb-10 pl-7 md:grid-cols-[8rem_1fr] md:gap-10 md:pl-0">
-          <span aria-hidden className={`absolute -left-[5px] top-2 size-[9px] rounded-full border ${tone[it.kind]} md:left-[7.8rem]`} />
-          <p className="font-serif text-2xl text-navy md:text-right md:pr-6">{it.year}</p>
-          <div className="md:pl-6">
-            <p className="text-[.7rem] font-semibold uppercase tracking-[.18em] text-gold-deep">{kindLabel[it.kind][lang]}</p>
-            <h3 className="mt-1 text-xl">{it.title[lang]}</h3>
-            <p className="mt-1 max-w-xl">{it.detail[lang]}</p>
-          </div>
-        </li>
-      ))}
-    </ol>
   );
 }

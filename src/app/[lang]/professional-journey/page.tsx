@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getLang } from "@/lib/page";
 import { pageMeta } from "@/lib/seo";
-import { kindLabel, timeline } from "@/content/profile";
+import { timeline } from "@/content/profile";
 import { PageHeader } from "@/components/parts";
 import { JourneyTimeline } from "@/components/JourneyTimeline";
 
@@ -21,14 +21,6 @@ export default async function Journey({ params }: { params: Promise<{ lang: stri
     <>
       <PageHeader lang={lang} title={lang === "en" ? "From 2011 to the presidency" : "2011 से अध्यक्ष पद तक"} />
       <section className="wrap py-16 md:py-24">
-        <ul className="mb-12 flex flex-wrap gap-x-8 gap-y-2 text-sm" aria-label={lang === "en" ? "Key" : "संकेत"}>
-          {(["education", "appointment", "organisation"] as const).map((k) => (
-            <li key={k} className="flex items-center gap-2">
-              <span aria-hidden className={`size-2.5 rounded-full border ${k === "education" ? "border-navy/40 bg-ivory" : k === "appointment" ? "border-navy bg-navy" : "border-gold bg-gold"}`} />
-              {kindLabel[k][lang]}
-            </li>
-          ))}
-        </ul>
         <JourneyTimeline lang={lang} items={timeline} />
       </section>
     </>
