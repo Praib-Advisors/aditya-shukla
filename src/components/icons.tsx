@@ -35,3 +35,11 @@ export function LinkedinIcon({ className }: IconProps) {
 }
 
 export const socialIcons = { facebook: FacebookIcon, x: XIcon, instagram: InstagramIcon, linkedin: LinkedinIcon } as const;
+
+export function QuoteIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M9 7H5v6h4v4H5M19 7h-4v6h4v4h-4" />
+    </svg>
+  );
+}

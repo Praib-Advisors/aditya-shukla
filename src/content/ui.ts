@@ -5,6 +5,7 @@ export const nav: { slug: PageSlug; label: L }[] = [
   { slug: "about", label: { en: "About", hi: "परिचय" } },
   { slug: "leadership", label: { en: "Leadership", hi: "नेतृत्व" } },
   { slug: "professional-journey", label: { en: "Professional Journey", hi: "व्यावसायिक यात्रा" } },
+  { slug: "ideals", label: { en: "Ideals", hi: "आदर्श" } },
   { slug: "ananya-foundation", label: { en: "Social Initiatives", hi: "सामाजिक पहल" } },
   { slug: "media", label: { en: "Media", hi: "मीडिया" } },
   { slug: "contact", label: { en: "Contact", hi: "संपर्क" } },

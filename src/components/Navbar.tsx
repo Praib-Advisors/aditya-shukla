@@ -56,8 +56,9 @@ export function Navbar({ lang }: { lang: Lang }) {
     m.style.opacity = "1";
     const box = m.parentElement!.getBoundingClientRect();
     const r = el.getBoundingClientRect();
-    m.style.width = `${r.width - 40}px`;
-    m.style.transform = `translateX(${r.left - box.left + 20}px)`;
+    const pad = parseFloat(getComputedStyle(el).paddingLeft) || 0;
+    m.style.width = `${r.width - pad * 2}px`;
+    m.style.transform = `translateX(${r.left - box.left + pad}px)`;
   }, []);
 
   const isActive = (slug: string) => {
@@ -106,7 +107,7 @@ export function Navbar({ lang }: { lang: Lang }) {
                   onMouseEnter={(e) => place(e.currentTarget)}
                   onFocus={(e) => place(e.currentTarget)}
                   onBlur={() => place(items.current[activeIndex] ?? null)}
-                  className={`group relative block whitespace-nowrap rounded-sm px-5 py-2 text-[1.02rem] tracking-[.005em] transition duration-300 hover:-translate-y-px hover:bg-navy/[.06] hover:text-navy ${
+                  className={`group relative block whitespace-nowrap rounded-sm px-4 py-2 text-[.98rem] tracking-[.005em] transition duration-300 hover:-translate-y-px hover:bg-navy/[.06] hover:text-navy ${
                     isActive(n.slug) ? "font-medium text-navy" : "text-navy/75"
                   }`}
                 >
@@ -118,7 +119,7 @@ export function Navbar({ lang }: { lang: Lang }) {
           <Link
             href={href(lang, contact.slug)}
             aria-current={isActive(contact.slug) ? "page" : undefined}
-            className={`nav-item group relative ml-5 inline-flex items-center gap-1.5 overflow-hidden whitespace-nowrap rounded-[3px] border px-6 py-3 text-[.95rem] font-medium tracking-wide transition duration-300 hover:-translate-y-0.5 hover:border-gold hover:bg-gold hover:text-navy hover:shadow-[0_12px_24px_-14px_rgba(23,43,64,.6)] ${
+            className={`nav-item group relative ml-4 inline-flex items-center gap-1.5 overflow-hidden whitespace-nowrap rounded-[3px] border px-5 py-3 text-[.92rem] font-medium tracking-wide transition duration-300 hover:-translate-y-0.5 hover:border-gold hover:bg-gold hover:text-navy hover:shadow-[0_12px_24px_-14px_rgba(23,43,64,.6)] ${
               isActive(contact.slug) ? "border-gold bg-gold text-navy" : "border-navy bg-navy text-white"
             }`}
             style={{ ["--i" as string]: links.length }}
