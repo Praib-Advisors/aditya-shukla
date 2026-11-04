@@ -55,17 +55,18 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
           />
         </picture>
 
-        {/* Slide 2: desktop only. The banner has its own line of text at the bottom, so it is anchored to the bottom edge. */}
-        <div data-desktop-only className="size-full">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
+        {/* Slide 2: the second supplied banner pair. The banner carries its own line of text near the bottom. */}
+        <picture>
+          <source media="(min-width: 768px)" srcSet="/hero/slide2-desktop.jpg" />
           <img
-            src="/hero/slide2-desktop.jpg"
+            src="/hero/slide2-mobile.jpg"
             alt={t("Dr. Aditya Shukla with leaders, under the line “BJP by Birth, Dedicated to Public Service”", "नेताओं के साथ डॉ. आदित्य शुक्ला, पंक्ति “BJP by Birth, Dedicated to Public Service” के साथ")}
-            width={2400}
-            height={1350}
+            width={1080}
+            height={1920}
+            loading="lazy"
             className="size-full object-cover object-[50%_100%]"
           />
-        </div>
+        </picture>
       </HeroSlider>
 
       {/* About: tall portrait rising into the hero, biography set lower and to the right */}
