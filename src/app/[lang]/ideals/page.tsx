@@ -63,18 +63,6 @@ export default async function Ideals({ params }: { params: Promise<{ lang: strin
       <section className="wrap py-16 md:py-24">
         <h2 className="sr-only">{t("Our ideals: the list", "हमारे आदर्श: सूची")}</h2>
         <IdealsGallery lang={lang} exclude={featured.slug} />
-
-        <div className="mt-20 border-t border-navy/15 pt-8">
-          <h2 className="text-lg">{t("Photograph credits", "छायाचित्र श्रेय")}</h2>
-          <ul className="mt-4 grid gap-x-10 gap-y-2 text-[.82rem] sm:grid-cols-2">
-            {ideals.map((p) => (
-              <li key={p.slug}>
-                <a href={p.credit.url} target="_blank" rel="noopener noreferrer" className="text-navy underline decoration-gold underline-offset-4">{p.name[lang]}</a>
-                {": "}{p.credit.author}, {p.credit.license}
-              </li>
-            ))}
-          </ul>
-        </div>
       </section>
     </>
   );
