@@ -43,8 +43,8 @@ export function AnanyaFeature({ lang, link = false, as: Tag = "h2" }: { lang: La
                 <span className="text-[#8a6b3a]">{t("Creating Opportunities.", "अवसरों का सृजन।")}</span>
               </Tag>
               <p className="mt-6 max-w-lg text-[1.02rem] leading-relaxed text-[#3f4a55]">
-                {t("Ananya Foundation is a non-profit organisation founded by Dr. Aditya Shukla. Its stated purpose is the empowerment of women, and it is listed among the ventures in his CV.",
-                   "अनन्या फाउंडेशन एक गैर-लाभकारी संगठन है, जिसकी स्थापना डॉ. आदित्य शुक्ला ने की। इसका घोषित उद्देश्य महिलाओं का सशक्तिकरण है और उनके सी.वी. में यह उनके उपक्रमों में सूचीबद्ध है।")}
+                {t("Ananya Foundation is a non-profit organisation founded by Dr. Aditya Shukla, working for the empowerment of women.",
+                   "अनन्या फाउंडेशन एक गैर-लाभकारी संगठन है, जिसकी स्थापना डॉ. आदित्य शुक्ला ने की। यह महिलाओं के सशक्तिकरण के लिए कार्यरत है।")}
               </p>
 
               <dl className="mt-9 grid border-t border-[#8a6b3a]/50 sm:grid-cols-2">

@@ -14,7 +14,6 @@ export const pageSlugs = [
   "",
   "about",
   "leadership",
-  "professional-journey",
   "ideals",
   "government-experience",
   "legal-academic",

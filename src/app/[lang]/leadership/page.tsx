@@ -6,7 +6,7 @@ import { pageMeta } from "@/lib/seo";
 import { moreNav } from "@/content/ui";
 import { Pic, SectionHead, TextLink } from "@/components/parts";
 import { LeadershipBand } from "@/components/LeadershipBand";
-import { chapterActivity, naredcoSite, officeBearers } from "@/content/naredco";
+import { chapterActivity } from "@/content/naredco";
 
 const title = { en: "Leadership and Responsibilities", hi: "नेतृत्व और दायित्व" };
 
@@ -24,14 +24,14 @@ export default async function Leadership({ params }: { params: Promise<{ lang: s
 
   return (
     <>
-      <LeadershipBand lang={lang} as="h1" title={title[lang]} />
+      <LeadershipBand lang={lang} as="h1" title={title[lang]} hide={["ananya-foundation"]} />
 
       {/* Institutional leadership: a statement and two columns of text */}
       <section className="wrap py-24 md:py-32">
         <SectionHead title={t("President, NAREDCO Uttar Pradesh", "अध्यक्ष, NAREDCO उत्तर प्रदेश")} />
         <div className="mt-10 gap-14 md:columns-2">
           <p>{t("Dr. Shukla has led the Uttar Pradesh chapter of NAREDCO, the National Real Estate Development Council, since 3 August 2025.", "डॉ. शुक्ला 3 अगस्त 2025 से नेशनल रियल एस्टेट डेवलपमेंट काउंसिल (NAREDCO) की उत्तर प्रदेश इकाई का नेतृत्व कर रहे हैं।")}</p>
-          <p className="mt-5 md:mt-0">{t("The chapter's own website lists him as President among its State Office Bearers. Photographs in the archive show him at the UP Real Estate Summit 2026 in Lucknow, the Real Estate & Infrastructure Investors' Summit 2026 organised by NAREDCO Maharashtra, and presenting NAREDCO mementos during courtesy calls.", "चैप्टर की अपनी वेबसाइट पर उन्हें राज्य पदाधिकारियों में अध्यक्ष के रूप में सूचीबद्ध किया गया है। संग्रह के चित्रों में वे लखनऊ में यूपी रियल एस्टेट समिट 2026 में, NAREDCO महाराष्ट्र द्वारा आयोजित रियल एस्टेट एवं इन्फ्रास्ट्रक्चर इन्वेस्टर्स समिट 2026 में तथा शिष्टाचार भेंटों में NAREDCO स्मृति-चिह्न भेंट करते दिखाई देते हैं।")}</p>
+          <p className="mt-5 md:mt-0">{t("He has taken part in the UP Real Estate Summit 2026 in Lucknow and in the Real Estate & Infrastructure Investors' Summit 2026 organised by NAREDCO Maharashtra, and presents NAREDCO mementos during courtesy calls.", "वे लखनऊ में यूपी रियल एस्टेट समिट 2026 में तथा NAREDCO महाराष्ट्र द्वारा आयोजित रियल एस्टेट एवं इन्फ्रास्ट्रक्चर इन्वेस्टर्स समिट 2026 में शामिल हुए हैं, और शिष्टाचार भेंटों में NAREDCO स्मृति-चिह्न भेंट करते हैं।")}</p>
         </div>
       </section>
 
@@ -40,7 +40,7 @@ export default async function Leadership({ params }: { params: Promise<{ lang: s
         <div className="wrap py-24 md:py-32">
           <SectionHead dark title={t("NAREDCO Uttar Pradesh in 2026", "NAREDCO उत्तर प्रदेश, 2026")} />
           <p className="mt-4 max-w-2xl text-ivory/75">
-            {t("Events and meetings listed on the chapter's own website, with the photographs it publishes.", "चैप्टर की अपनी वेबसाइट पर सूचीबद्ध कार्यक्रम और बैठकें, उसी पर प्रकाशित चित्रों के साथ।")}
+            {t("Recent events and meetings of the chapter.", "चैप्टर के हालिया कार्यक्रम और बैठकें।")}
           </p>
           <ul className="mt-14 grid items-start gap-10 md:grid-cols-3">
             {chapterActivity.map((a, i) => (
@@ -50,7 +50,7 @@ export default async function Leadership({ params }: { params: Promise<{ lang: s
                 </div>
                 <h3 className="mt-5 text-2xl !text-ivory">{a.title[lang]}</h3>
                 {a.date && <p className="mt-1 text-sm text-gold">{a.date[lang]}</p>}
-                <p className="mt-2 text-sm text-ivory/75">{a.note[lang]}</p>
+                {a.note && <p className="mt-2 text-sm text-ivory/75">{a.note[lang]}</p>}
               </li>
             ))}
           </ul>
@@ -75,37 +75,9 @@ export default async function Leadership({ params }: { params: Promise<{ lang: s
         </div>
       </section>
 
-      <section className="bg-sand">
-        <div className="wrap py-24 md:py-32">
-          <SectionHead title={t("Office bearers", "पदाधिकारी")} />
-          <div className="mt-10 grid gap-12 lg:grid-cols-2">
-            {officeBearers.map((g) => (
-              <div key={g.group.en}>
-                <h3 className="text-2xl">{g.group[lang]}</h3>
-                <dl className="mt-4 divide-y divide-navy/15 border-y border-navy/15">
-                  {g.people.map((p) => (
-                    <div key={p.name} className={`grid gap-1 py-3 sm:grid-cols-[14rem_1fr] sm:gap-6 ${p.name === "Dr. Aditya Shukla" ? "-mx-3 bg-ivory px-3" : ""}`}>
-                      <dt className="font-serif text-lg text-navy">{p.name}</dt>
-                      <dd className="text-[.95rem]">{p.role[lang]}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
-            ))}
-          </div>
-          <p className="mt-8 text-sm">
-            {t("As listed on the Governance page of ", "जैसा कि ")}
-            <a href={naredcoSite + "governance/"} target="_blank" rel="noopener noreferrer" className="underline decoration-gold underline-offset-4">naredcouttarpradesh.in</a>
-            {lang === "hi" ? " के गवर्नेंस पृष्ठ पर सूचीबद्ध है।" : "."}
-          </p>
-        </div>
-      </section>
-
       <section className="wrap py-24 text-center md:py-32">
-        <SectionHead className="mx-auto" title="Ananya Foundation" />
-        <p className="mx-auto mt-5 max-w-xl">{t("A non-profit working for women's empowerment, active across five regions of the country.", "महिला सशक्तिकरण के लिए कार्यरत एक गैर-लाभकारी संस्था, जो देश के पाँच क्षेत्रों में सक्रिय है।")}</p>
-        <div className="mt-6"><TextLink lang={lang} to="ananya-foundation">{t("Full details", "पूरा विवरण")}</TextLink></div>
-        <ul className="mx-auto mt-14 max-w-xl divide-y divide-navy/15 border-y border-navy/15 text-left">
+        <SectionHead className="mx-auto" title={t("More about Dr. Shukla", "डॉ. शुक्ला के बारे में और जानें")} />
+        <ul className="mx-auto mt-10 max-w-xl divide-y divide-navy/15 border-y border-navy/15 text-left">
           {moreNav.map((n) => (
             <li key={n.slug}><Link href={href(lang, n.slug)} className="flex min-h-14 items-center justify-between font-serif text-xl text-navy hover:text-gold-deep">{n.label[lang]}<span aria-hidden>→</span></Link></li>
           ))}

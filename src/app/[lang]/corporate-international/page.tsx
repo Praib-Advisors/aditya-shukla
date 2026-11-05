@@ -18,7 +18,7 @@ export default async function Corporate({ params }: { params: Promise<{ lang: st
   const t = (en: string, hi: string) => (lang === "en" ? en : hi);
   return (
     <>
-      <PageHeader lang={lang} title={title[lang]} />
+      <PageHeader lang={lang} title={title[lang]} accent={lang === "en" ? "International Engagements" : "अंतरराष्ट्रीय दायित्व"} />
 
       <section className="wrap grid gap-12 py-16 md:py-24 lg:grid-cols-12">
         <div className="lg:col-span-5"><SectionHead title={t("Corporate engagements", "कॉर्पोरेट दायित्व")} /></div>
@@ -33,7 +33,6 @@ export default async function Corporate({ params }: { params: Promise<{ lang: st
               <dd className="mt-1 text-sm font-semibold uppercase tracking-[.14em] text-gold-deep">{t("Chief Legal Advisor, Legal and Compliance Cell", "मुख्य विधिक सलाहकार, विधिक एवं अनुपालन प्रकोष्ठ")}</dd>
             </div>
           </dl>
-          <p className="mt-6 text-sm">{t("Both roles are listed under current employment in his CV.", "दोनों दायित्व उनके सी.वी. में वर्तमान नियोजन के अंतर्गत सूचीबद्ध हैं।")}</p>
         </div>
       </section>
 
@@ -42,9 +41,9 @@ export default async function Corporate({ params }: { params: Promise<{ lang: st
           <div className="lg:col-span-6">
             <SectionHead title={t("International engagements", "अंतरराष्ट्रीय संपर्क")} />
             <div className="mt-6 space-y-4">
-              <p>{t("Dr. Shukla has visited the United Arab Emirates and a few other countries. According to his CV, the purpose was to look for opportunities to build connections and develop resources towards memoranda of understanding intended to support India's economy.",
-                    "डॉ. शुक्ला ने संयुक्त अरब अमीरात और कुछ अन्य देशों की यात्राएँ की हैं। उनके सी.वी. के अनुसार इनका उद्देश्य संपर्क बनाने और ऐसे समझौता-ज्ञापनों की दिशा में संसाधन विकसित करने के अवसर तलाशना था, जो भारत की अर्थव्यवस्था को गति दे सकें।")}</p>
-              <p>{t("These are exploratory efforts. No memorandum of understanding is recorded as concluded in the supplied documents.", "ये अन्वेषणात्मक प्रयास हैं। उपलब्ध दस्तावेज़ों में किसी समझौता-ज्ञापन के संपन्न होने का उल्लेख नहीं है।")}</p>
+              <p>{t("Dr. Shukla has visited the United Arab Emirates and a few other countries. The purpose was to look for opportunities to build connections and develop resources towards memoranda of understanding intended to support India's economy.",
+                    "डॉ. शुक्ला ने संयुक्त अरब अमीरात और कुछ अन्य देशों की यात्राएँ की हैं। इनका उद्देश्य संपर्क बनाने और ऐसे समझौता-ज्ञापनों की दिशा में संसाधन विकसित करने के अवसर तलाशना था, जो भारत की अर्थव्यवस्था को गति दे सकें।")}</p>
+              <p>{t("These are exploratory efforts.", "ये अन्वेषणात्मक प्रयास हैं।")}</p>
             </div>
           </div>
           <div className="lg:col-span-6">

@@ -51,7 +51,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             width={1080}
             height={1920}
             fetchPriority="high"
-            className="hero-in size-full origin-bottom object-cover max-md:scale-[1.05] md:origin-center md:scale-100"
+            className="hero-in size-full origin-bottom object-cover max-md:scale-[1.05] md:origin-center md:scale-100 md:object-[50%_35%]"
           />
         </picture>
 
@@ -139,14 +139,14 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         <div className="wrap py-24 md:py-32">
           <SectionHead align="center" title={t("Appointments and milestones", "नियुक्तियाँ और पड़ाव")} />
           <div className="mt-14"><JourneyTimeline lang={lang} items={timeline} /></div>
-          <div className="mt-6"><TextLink lang={lang} to="professional-journey">{ui.viewAll[lang]}</TextLink></div>
+          <div className="mt-6"><TextLink lang={lang} to="about#journey">{ui.viewAll[lang]}</TextLink></div>
         </div>
       </section>
 
       <ShapeDivider fill="navy" flip />
 
       {/* Government experience: statement above a ruled grid, no photograph */}
-      <section className="pilasters bg-navy text-ivory">
+      <section className="surface-dark bg-navy text-ivory">
         <div className="wrap py-24 md:py-32">
           <SectionHead dark size="lg" label={t("Government service", "सरकारी सेवा")} title={t("Ministry of Housing and Urban Affairs", "आवासन और शहरी कार्य मंत्रालय")} />
           <p className="mt-6 max-w-2xl text-lg text-ivory/80">

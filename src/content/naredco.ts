@@ -48,22 +48,21 @@ export const officeBearers: { group: L; people: { name: string; role: L }[] }[] 
 ];
 
 /** Chapter events and meetings that have a photograph supplied by the chapter's site. */
-export const chapterActivity: { photo: string; title: L; date?: L; note: L }[] = [
+export const chapterActivity: { photo: string; title: L; date?: L; note?: L }[] = [
   {
     photo: "up-real-estate-summit-2026",
     title: { en: "UP Real Estate Summit 2026", hi: "यूपी रियल एस्टेट समिट 2026" },
     date: { en: "21 May 2026, Lucknow", hi: "21 मई 2026, लखनऊ" },
-    note: { en: "Listed among the chapter's events. The summit banner names the Indian Chamber of Commerce.", hi: "चैप्टर के कार्यक्रमों में सूचीबद्ध। समिट के बैनर पर इंडियन चैंबर ऑफ कॉमर्स का नाम है।" },
   },
   {
     photo: "governing-council-meeting",
     title: { en: "2nd Governing Council Meeting", hi: "द्वितीय गवर्निंग काउंसिल बैठक" },
     date: { en: "26 April 2026", hi: "26 अप्रैल 2026" },
-    note: { en: "The backdrop reads: National Real Estate Development Council, Uttar Pradesh, under the aegis of the Ministry of Housing and Urban Affairs, Government of India.", hi: "पृष्ठभूमि पर लिखा है: नेशनल रियल एस्टेट डेवलपमेंट काउंसिल, उत्तर प्रदेश, आवासन और शहरी कार्य मंत्रालय, भारत सरकार के तत्वावधान में।" },
+    note: { en: "National Real Estate Development Council, Uttar Pradesh, under the aegis of the Ministry of Housing and Urban Affairs, Government of India.", hi: "नेशनल रियल एस्टेट डेवलपमेंट काउंसिल, उत्तर प्रदेश, आवासन और शहरी कार्य मंत्रालय, भारत सरकार के तत्वावधान में।" },
   },
   {
     photo: "mahi-convention",
     title: { en: "5th NAREDCO Mahi Convention", hi: "5वां NAREDCO माही कन्वेंशन" },
-    note: { en: "Held with the NAREDCO Real Estate Conclave in New Delhi, according to the event banner.", hi: "कार्यक्रम के बैनर के अनुसार NAREDCO रियल एस्टेट कॉन्क्लेव के साथ नई दिल्ली में आयोजित।" },
+    note: { en: "Held with the NAREDCO Real Estate Conclave in New Delhi.", hi: "NAREDCO रियल एस्टेट कॉन्क्लेव के साथ नई दिल्ली में आयोजित।" },
   },
 ];

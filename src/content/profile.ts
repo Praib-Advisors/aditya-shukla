@@ -41,6 +41,8 @@ export interface TimelineItem {
   kind: TimelineKind;
   title: L;
   detail: L;
+  /** Points for the Professional Journey page. A short detail is kept above them; a long one is replaced by them. */
+  more?: L<string[]>;
 }
 
 export const kindLabel: Record<TimelineKind, L> = {
@@ -62,15 +64,15 @@ export const timeline: TimelineItem[] = [
     detail: { en: "Amity University, Gurugram.", hi: "एमिटी विश्वविद्यालय, गुरुग्राम।" } },
   { year: "2014", kind: "organisation", title: { en: "Legal specialist with the party", hi: "पार्टी के साथ विधि विशेषज्ञ" },
     detail: { en: "Began work with the party as a legal specialist and political analyst.", hi: "विधि विशेषज्ञ और राजनीतिक विश्लेषक के रूप में पार्टी के साथ कार्य आरंभ।" } },
-  { year: "2016–2019", kind: "organisation", title: { en: "Academic events at Amity Law School", hi: "एमिटी लॉ स्कूल में शैक्षणिक आयोजन" },
+  { year: "2016–2019", kind: "organisation", more: { en: ["Four editions of the Amity National Moot Court Competition, 2016 to 2019", "International conferences on environmental law and on infrastructure, growth and development", "A Technology-based Entrepreneurship Development Programme, run with the Department of Science and Technology, Government of India", "Organising Secretary, Global HR Congress, April 2018"], hi: ["एमिटी राष्ट्रीय मूट कोर्ट प्रतियोगिता के चार संस्करण, 2016 से 2019", "पर्यावरण विधि तथा अवसंरचना, विकास एवं वृद्धि पर अंतरराष्ट्रीय सम्मेलन", "भारत सरकार के विज्ञान एवं प्रौद्योगिकी विभाग के साथ प्रौद्योगिकी-आधारित उद्यमिता विकास कार्यक्रम", "अप्रैल 2018 में ग्लोबल एच.आर. कांग्रेस के आयोजन सचिव"] }, title: { en: "Academic events at Amity Law School", hi: "एमिटी लॉ स्कूल में शैक्षणिक आयोजन" },
     detail: { en: "Organised four Amity National Moot Court Competitions, conferences on law and the environment and on infrastructure, the Global HR Congress 2018 and a technology entrepreneurship programme.", hi: "चार एमिटी राष्ट्रीय मूट कोर्ट प्रतियोगिताएँ, पर्यावरण एवं अवसंरचना पर सम्मेलन, ग्लोबल एच.आर. कांग्रेस 2018 और प्रौद्योगिकी उद्यमिता कार्यक्रम का आयोजन।" } },
   { year: "2019–2020", kind: "education", title: { en: "LL.M.", hi: "एल.एल.एम." },
     detail: { en: "Master of Laws, Jagannath University, Jaipur.", hi: "विधि स्नातकोत्तर, जगन्नाथ विश्वविद्यालय, जयपुर।" } },
-  { year: "2019–2021", kind: "appointment", title: { en: "Member, Divisional Railway Consultative Committee", hi: "सदस्य, मंडल रेल उपयोगकर्ता परामर्शदात्री समिति" },
+  { year: "2019–2021", kind: "appointment", more: { en: ["A divisional committee of the Ministry of Railways, Government of India", "A forum in which users of the railway system put their concerns to railway administration"], hi: ["भारत सरकार के रेल मंत्रालय की एक मंडल स्तरीय समिति", "ऐसा मंच जिसमें रेल उपयोगकर्ता अपनी बातें रेल प्रशासन तक पहुँचाते हैं"] }, title: { en: "Member, Divisional Railway Consultative Committee", hi: "सदस्य, मंडल रेल उपयोगकर्ता परामर्शदात्री समिति" },
     detail: { en: "Ministry of Railways, Government of India.", hi: "रेल मंत्रालय, भारत सरकार।" } },
-  { year: "2021–2024", kind: "appointment", title: { en: "Additional Private Secretary to the Minister of State, Housing and Urban Affairs", hi: "अपर निजी सचिव, आवासन और शहरी कार्य राज्य मंत्री" },
+  { year: "2021–2024", kind: "appointment", more: { en: ["Drafting letters for the Minister's signature", "Preparing internal notes, speeches and talking points", "Arranging tour programmes", "Following parliamentary questions during sessions of Parliament", "Accompanying the Minister on official tours"], hi: ["माननीय मंत्री के हस्ताक्षर के लिए पत्रों का प्रारूप तैयार करना", "आंतरिक टिप्पणियाँ, भाषण और वार्ता-बिंदु तैयार करना", "दौरा कार्यक्रम बनाना", "संसद सत्रों के दौरान संसदीय प्रश्नों की निगरानी करना", "आधिकारिक दौरों पर मंत्री के साथ जाना"] }, title: { en: "Additional Private Secretary to the Minister of State, Housing and Urban Affairs", hi: "अपर निजी सचिव, आवासन और शहरी कार्य राज्य मंत्री" },
     detail: { en: "Government of India, July 2021 to June 2024.", hi: "भारत सरकार, जुलाई 2021 से जून 2024।" } },
-  { year: "2025", kind: "appointment", title: { en: "President, NAREDCO Uttar Pradesh", hi: "अध्यक्ष, NAREDCO उत्तर प्रदेश" },
+  { year: "2025", kind: "appointment", more: { en: ["State chapter of the National Real Estate Development Council", "Describes itself as working under the aegis of the Ministry of Housing and Urban Affairs, Government of India"], hi: ["नेशनल रियल एस्टेट डेवलपमेंट काउंसिल की प्रदेश इकाई", "स्वयं को भारत सरकार के आवासन और शहरी कार्य मंत्रालय के तत्वावधान में कार्यरत बताती है"] }, title: { en: "President, NAREDCO Uttar Pradesh", hi: "अध्यक्ष, NAREDCO उत्तर प्रदेश" },
     detail: { en: "From 3 August 2025.", hi: "3 अगस्त 2025 से।" } },
 ];
 
@@ -88,7 +90,7 @@ export const governmentDuties: { title: L; body: L }[] = [
   { title: { en: "Official tours", hi: "आधिकारिक दौरे" },
     body: { en: "Accompanying the Minister of State on official tours.", hi: "राज्य मंत्री के साथ आधिकारिक दौरों पर जाना।" } },
   { title: { en: "Party headquarters coordination", hi: "पार्टी मुख्यालय से समन्वय" },
-    body: { en: "Coordination with the BJP headquarters in New Delhi, listed among the responsibilities discharged during this employment.", hi: "नई दिल्ली स्थित भाजपा मुख्यालय से समन्वय, जो इस कार्यकाल के दौरान निभाए गए दायित्वों में सूचीबद्ध है।" } },
+    body: { en: "Coordination with the BJP headquarters in New Delhi, among the responsibilities discharged during this employment.", hi: "नई दिल्ली स्थित भाजपा मुख्यालय से समन्वय, इस कार्यकाल के दौरान निभाए गए दायित्वों में से एक।" } },
 ];
 
 export const events: { date: L; title: L }[] = [
@@ -115,5 +117,5 @@ export const memberships: { title: L; detail: L }[] = [
   { title: { en: "Bar Council of Uttar Pradesh", hi: "उत्तर प्रदेश बार काउंसिल" }, detail: { en: "Registered advocate, Reg. No. UP M 04356/20.", hi: "पंजीकृत अधिवक्ता, पंजीकरण संख्या UP M 04356/20।" } },
   { title: { en: "Oudh Bar Association", hi: "अवध बार एसोसिएशन" }, detail: { en: "Member, High Court, Lucknow Bench. Reg. No. 4356/2020.", hi: "सदस्य, उच्च न्यायालय, लखनऊ पीठ। पंजीकरण संख्या 4356/2020।" } },
   { title: { en: "LEX REVOLUTION", hi: "LEX REVOLUTION" }, detail: { en: "Member, Advisory Editorial Board of a UGC-indexed law journal (ISSN 2394-997X).", hi: "यू.जी.सी.-सूचीबद्ध विधि पत्रिका (ISSN 2394-997X) के परामर्शदात्री संपादकीय मंडल के सदस्य।" } },
-  { title: { en: "B V University for Peace and Education", hi: "बी वी यूनिवर्सिटी फॉर पीस एंड एजुकेशन" }, detail: { en: "Conferred Honoris Causa. The CV describes the university as registered with the United Nations Organizations.", hi: "ऑनोरिस कॉज़ा उपाधि प्रदत्त। सी.वी. के अनुसार विश्वविद्यालय संयुक्त राष्ट्र संगठनों में पंजीकृत है।" } },
+  { title: { en: "B V University for Peace and Education", hi: "बी वी यूनिवर्सिटी फॉर पीस एंड एजुकेशन" }, detail: { en: "Conferred Honoris Causa.", hi: "ऑनोरिस कॉज़ा उपाधि प्रदत्त।" } },
 ];

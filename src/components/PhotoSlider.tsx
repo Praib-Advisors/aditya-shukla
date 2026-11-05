@@ -1,24 +1,45 @@
 "use client";
 
-import { Children, useRef, useState } from "react";
+import { Children, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 /**
  * Two or more photographs side by side in a strip that slides left and right. The strip follows a finger or a
  * mouse drag and settles on the nearest photograph when released; arrows, dots and the left and right arrow keys
- * also move it. Slides that are off screen are inert.
+ * also move it. Slides that are off screen are inert. With `autoplay` (milliseconds per photo) it advances on its
+ * own and returns to the first photograph after the last; it waits while the mouse is over it, while a keyboard
+ * user is on it, while it is being dragged, and for visitors who prefer reduced motion. Using the arrows, dots or
+ * a drag restarts the wait.
  */
-export function PhotoSlider({ children, label, prev, next, slide, className = "" }: {
-  children: React.ReactNode; label: string; prev: string; next: string; slide: string; className?: string;
+export function PhotoSlider({ children, label, prev, next, slide, className = "", autoplay = 0 }: {
+  children: React.ReactNode; label: string; prev: string; next: string; slide: string; className?: string; autoplay?: number;
 }) {
   const slides = Children.toArray(children);
   const n = slides.length;
   const [i, setI] = useState(0);
   const [dx, setDx] = useState(0);
   const [dragging, setDragging] = useState(false);
+  const [hover, setHover] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const [reduce, setReduce] = useState(true); // assume reduced motion until the browser says otherwise
   const box = useRef<HTMLElement>(null);
   const start = useRef<{ x: number; y: number; locked: boolean | null } | null>(null);
   const go = (d: number) => setI((v) => Math.min(n - 1, Math.max(0, v + d)));
+
+  useEffect(() => {
+    const q = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const on = () => setReduce(q.matches);
+    on();
+    q.addEventListener("change", on);
+    return () => q.removeEventListener("change", on);
+  }, []);
+
+  // One timer per photograph: any change of photograph (or of pause state) starts the wait again.
+  useEffect(() => {
+    if (!autoplay || n < 2 || reduce || hover || focused || dragging) return;
+    const t = setTimeout(() => setI((v) => (v + 1) % n), autoplay);
+    return () => clearTimeout(t);
+  }, [autoplay, n, reduce, hover, focused, dragging, i]);
   const arrow = "absolute top-1/2 z-10 grid size-11 -translate-y-1/2 place-items-center border border-gold/60 bg-ivory/90 text-navy shadow-sm transition duration-300 hover:bg-gold hover:text-navy active:scale-95 disabled:pointer-events-none disabled:opacity-0";
 
   const onDown = (e: React.PointerEvent) => {
@@ -65,6 +86,11 @@ export function PhotoSlider({ children, label, prev, next, slide, className = ""
         if (e.key === "ArrowRight") go(1);
         if (e.key === "ArrowLeft") go(-1);
       }}
+      onPointerEnter={(e) => { if (e.pointerType === "mouse") setHover(true); }}
+      onPointerLeave={(e) => { if (e.pointerType === "mouse") setHover(false); }}
+      // Only a keyboard user's focus pauses it; a tap on a phone leaves focus behind and must not freeze it.
+      onFocus={(e) => { if (e.target.matches(":focus-visible")) setFocused(true); }}
+      onBlur={() => setFocused(false)}
       onPointerDown={onDown}
       onPointerMove={onMove}
       onPointerUp={onUp}

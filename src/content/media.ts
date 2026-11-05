@@ -45,6 +45,9 @@ const bouquet = ["Courtesy meeting with a floral welcome", "पुष्प-स�
 const memento = ["Presenting a NAREDCO memento", "NAREDCO स्मृति-चिह्न भेंट करते हुए"] as const;
 const summit = ["Real Estate & Infrastructure Investors' Summit 2026, 6th edition, organised by NAREDCO Maharashtra", "रियल एस्टेट एवं इन्फ्रास्ट्रक्चर इन्वेस्टर्स समिट 2026, छठा संस्करण, NAREDCO महाराष्ट्र द्वारा आयोजित"] as const;
 const court = ["At the Supreme Court of India, in advocate's attire", "भारत के सर्वोच्च न्यायालय में, अधिवक्ता परिधान में"] as const;
+const convocation = ["At a convocation ceremony for honorary degree and award recipients", "मानद उपाधि एवं पुरस्कार प्राप्तकर्ताओं के दीक्षांत समारोह में"] as const;
+const mementoMeet = ["Courtesy meeting with a memento", "स्मृति-चिह्न के साथ शिष्टाचार भेंट"] as const;
+const gathering = ["At an organisational gathering", "एक संगठनात्मक बैठक में"] as const;
 
 export const photos: Photo[] = [
   p("naredco-official-portrait", "portraits", "Official portrait, NAREDCO Uttar Pradesh", "आधिकारिक चित्र, NAREDCO उत्तर प्रदेश"),
@@ -56,6 +59,7 @@ export const photos: Photo[] = [
   p("supreme-court-steps", "portraits", ...court),
   p("supreme-court-robes", "portraits", ...court),
   p("supreme-court-lawn", "portraits", "Outside the Supreme Court of India", "भारत के सर्वोच्च न्यायालय के बाहर"),
+  p("supreme-court-front", "portraits", ...court),
 
   p("summit-banner-wide", "industry", ...summit),
   p("summit-with-delegate", "industry", "In conversation with a fellow delegate at the Investors' Summit 2026, NAREDCO Maharashtra", "इन्वेस्टर्स समिट 2026, NAREDCO महाराष्ट्र में एक सहभागी के साथ"),
@@ -63,7 +67,10 @@ export const photos: Photo[] = [
   p("expo-inauguration", "industry", "At the ribbon-cutting of a trade exhibition", "एक व्यापार प्रदर्शनी के उद्घाटन के अवसर पर"),
 
   p("convocation", "conferences", "At a convocation ceremony for honorary degree and award recipients", "मानद उपाधि एवं पुरस्कार प्राप्तकर्ताओं के दीक्षांत समारोह में"),
+  p("convocation-group", "conferences", ...convocation),
+  p("convocation-ceremony", "conferences", ...convocation),
   p("portrait-conference", "conferences", "At a conference venue, with a delegate badge", "एक सम्मेलन स्थल पर, प्रतिनिधि पहचान-पत्र के साथ"),
+  p("conference-delegates", "conferences", "At a conference venue, with delegate badges", "एक सम्मेलन स्थल पर, प्रतिनिधि पहचान-पत्र के साथ"),
 
   p("memento-minister-1", "official", ...memento),
   p("memento-minister-2", "official", ...memento),
@@ -81,16 +88,29 @@ export const photos: Photo[] = [
   p("meeting-hall-1", "official", ...courtesy),
   p("meeting-couch", "official", ...courtesy),
   p("meeting-stage", "official", ...courtesy),
+  p("meeting-bouquet-4", "official", ...bouquet),
+  p("meeting-bouquet-5", "official", ...bouquet),
+  p("meeting-formal-3", "official", ...courtesy),
+  p("meeting-formal-4", "official", ...courtesy),
+  p("meeting-formal-5", "official", ...courtesy),
+  p("meeting-seer", "official", ...courtesy),
+  p("meeting-collage", "official", ...courtesy),
+  p("meeting-memento-1", "official", ...mementoMeet),
+  p("meeting-memento-2", "official", ...mementoMeet),
 
   p("meeting-office-flag", "government", "Meeting in a government office", "एक सरकारी कार्यालय में भेंट"),
   p("meeting-up-secretariat", "government", "Meeting at an office displaying the Uttar Pradesh Government emblem", "उत्तर प्रदेश सरकार के प्रतीक-चिह्न वाले कार्यालय में भेंट"),
   p("meeting-office-1", "government", "Meeting in an office with a state emblem", "राजकीय प्रतीक-चिह्न वाले कार्यालय में भेंट"),
   p("meeting-office-2", "government", "Meeting in a government office", "एक सरकारी कार्यालय में भेंट"),
   p("meeting-office-3", "government", "Meeting in a government office", "एक सरकारी कार्यालय में भेंट"),
+  p("meeting-office-4", "government", "Meeting in a government office", "एक सरकारी कार्यालय में भेंट"),
 
   p("org-desk", "political", "Meeting in an organisational office", "एक संगठनात्मक कार्यालय में भेंट"),
   p("org-session-1", "political", "At an organisational gathering", "एक संगठनात्मक बैठक में"),
   p("org-session-2", "political", "At an organisational gathering", "एक संगठनात्मक बैठक में"),
+  p("org-backdrop-1", "political", ...gathering),
+  p("org-session-3", "political", ...gathering),
+  p("org-session-4", "political", ...gathering),
   p("org-memento-desk", "political", "Floral welcome at a party office", "एक पार्टी कार्यालय में पुष्प-स्वागत"),
 ];
 
@@ -99,10 +119,12 @@ export interface Video { id: string; src: string; poster: string; caption: L; da
 export const videos: Video[] = [];
 
 /**
- * Press clippings: none were supplied. Add entries (category "news", the caption is the headline and
- * publication) and the News filter appears automatically.
+ * Press clippings. Add entries (category "news", the caption is the headline and publication) and the News
+ * filter appears automatically. The newspaper's name is not visible on this cutting, so only the headline is given.
  */
-export const news: Photo[] = [];
+export const news: Photo[] = [
+  p("news-railway-committee", "news", "Newspaper report: “Dr. Ritesh and Aditya become members of the Divisional Railway Consultative Committee”", "समाचार: “डॉ. रितेश व आदित्य बने मण्डल रेल उपयोगकर्ता सलाहकार समिति के सदस्य”"),
+];
 
 export const homeStrip = ["memento-minister-2", "summit-banner-wide", "supreme-court-steps", "meeting-office-flag"];
 export const photoById = (id: string) => photos.find((x) => x.id === id)!;

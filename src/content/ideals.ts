@@ -138,5 +138,5 @@ export const ideals: Ideal[] = [
   },
 ];
 
-/** The saying shown in the "Thought of the day" card beside the page heading. */
-export const thoughtOfTheDay = { by: "narendra-modi" };
+/** The ideal featured at the top of the Ideals page, with a large portrait and a fixed saying. Not repeated in the grid below. */
+export const featuredIdeal = { by: "atal-bihari-vajpayee" };

@@ -21,7 +21,7 @@ export default async function Contact({ params }: { params: Promise<{ lang: stri
   const t = (en: string, hi: string) => (lang === "en" ? en : hi);
   const link = "text-navy underline decoration-gold underline-offset-4";
   return (
-    <section className="pilasters bg-ivory">
+    <section className="surface-light bg-ivory">
       <div className="wrap py-20 md:py-28">
         {/* One centred column: heading, form, then the contact details in a ruled row */}
         <div className="text-center">

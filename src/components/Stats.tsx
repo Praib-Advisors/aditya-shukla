@@ -32,11 +32,10 @@ const stats: { value: number; icon: typeof Landmark; title: L; detail: L }[] = [
 
 export function Stats({ lang }: { lang: Lang }) {
   return (
-    <section aria-label={lang === "en" ? "In figures" : "आँकड़ों में"} className="pilasters bg-navy text-ivory">
+    <section aria-label={lang === "en" ? "In figures" : "आँकड़ों में"} className="surface-dark bg-navy text-ivory">
       <div className="wrap py-20 md:py-28">
         <div className="mb-12 flex flex-wrap items-end justify-between gap-x-10 gap-y-3 border-b border-gold/40 pb-6">
           <h2 className="text-[clamp(2rem,4vw,3.2rem)] leading-tight !text-ivory">{lang === "en" ? "A record in figures" : "आँकड़ों में"}</h2>
-          <p className="text-sm text-ivory/60">{lang === "en" ? "Counted from the CV and biodata." : "सी.वी. और परिचय-पत्र से गणना।"}</p>
         </div>
 
         <dl className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

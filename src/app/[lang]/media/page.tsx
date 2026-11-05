@@ -19,7 +19,7 @@ export default async function Media({ params }: { params: Promise<{ lang: string
   const lang = await getLang(params);
   return (
     <>
-      <PageHeader lang={lang} title={title[lang]} />
+      <PageHeader lang={lang} title={title[lang]} accent={lang === "en" ? "Gallery" : "गैलरी"} />
       <section className="wrap py-14 md:py-20">
         <Gallery lang={lang} photos={[...photos, ...news]} videos={videos} labels={categoryLabel} order={categoryOrder} allLabel={{ en: "All", hi: "सभी" }} />
       </section>

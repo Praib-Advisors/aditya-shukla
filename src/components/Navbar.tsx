@@ -95,8 +95,8 @@ export function Navbar({ lang }: { lang: Lang }) {
           />
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center xl:flex">
-          <ul className="relative flex items-center" onMouseLeave={() => place(items.current[activeIndex] ?? null)}>
+        <nav aria-label="Primary" className="hidden flex-1 items-center xl:flex">
+          <ul className="relative ml-6 flex items-center 2xl:ml-10" onMouseLeave={() => place(items.current[activeIndex] ?? null)}>
             <span ref={mark} aria-hidden className="pointer-events-none absolute bottom-0.5 left-0 h-0.5 bg-gold opacity-0 transition-[transform,width,opacity] duration-500 ease-[cubic-bezier(.22,1,.36,1)]" />
             {links.map((n, i) => (
               <li key={n.slug} className="nav-item" style={{ ["--i" as string]: i }}>
@@ -119,7 +119,7 @@ export function Navbar({ lang }: { lang: Lang }) {
           <Link
             href={href(lang, contact.slug)}
             aria-current={isActive(contact.slug) ? "page" : undefined}
-            className={`nav-item group relative ml-4 inline-flex items-center gap-1.5 overflow-hidden whitespace-nowrap rounded-[3px] border px-5 py-3 text-[.92rem] font-medium tracking-wide transition duration-300 hover:-translate-y-0.5 hover:border-gold hover:bg-gold hover:text-navy hover:shadow-[0_12px_24px_-14px_rgba(23,43,64,.6)] ${
+            className={`nav-item group relative ml-auto inline-flex items-center gap-1.5 overflow-hidden whitespace-nowrap rounded-[3px] border px-5 py-3 text-[.92rem] font-medium tracking-wide transition duration-300 hover:-translate-y-0.5 hover:border-gold hover:bg-gold hover:text-navy hover:shadow-[0_12px_24px_-14px_rgba(23,43,64,.6)] ${
               isActive(contact.slug) ? "border-gold bg-gold text-navy" : "border-navy bg-navy text-white"
             }`}
             style={{ ["--i" as string]: links.length }}

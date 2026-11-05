@@ -9,8 +9,8 @@ const title = { en: "Ananya Foundation", hi: "अनन्या फाउंड
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const lang = await getLang(params);
   return pageMeta(lang, "ananya-foundation", title, {
-    en: "Ananya Foundation, a non-profit organisation whose stated purpose is women's empowerment, founded by Dr. Aditya Shukla.",
-    hi: "अनन्या फाउंडेशन, डॉ. आदित्य शुक्ला द्वारा स्थापित एक गैर-लाभकारी संगठन, जिसका घोषित उद्देश्य महिला सशक्तिकरण है।",
+    en: "Ananya Foundation, a non-profit organisation working for women's empowerment, founded by Dr. Aditya Shukla.",
+    hi: "अनन्या फाउंडेशन, डॉ. आदित्य शुक्ला द्वारा स्थापित महिला सशक्तिकरण के लिए कार्यरत एक गैर-लाभकारी संगठन।",
   });
 }
 
@@ -24,13 +24,14 @@ export default async function Foundation({ params }: { params: Promise<{ lang: s
     [t("Founder", "संस्थापक"), t("Dr. Aditya Shukla", "डॉ. आदित्य शुक्ला")],
     [t("Legal form", "स्वरूप"), t("Non-profit organisation", "गैर-लाभकारी संगठन")],
     [t("Purpose", "उद्देश्य"), t("Women's empowerment", "महिला सशक्तिकरण")],
-    [t("Funding", "वित्तपोषण"), t("Self-funded, according to the biodata", "परिचय-पत्र के अनुसार स्ववित्तपोषित")],
+    [t("Funding", "वित्तपोषण"), t("Self-funded", "स्ववित्तपोषित")],
   ];
   return (
     <>
       <PageHeader
         lang={lang}
-        light
+        backdrop="/ananya-hero-bg.jpg"
+        accent={t("Foundation", "फाउंडेशन")}
         title={title[lang]}
         lead={t("A non-profit organisation working towards women's empowerment, founded by Dr. Aditya Shukla.", "महिला सशक्तिकरण की दिशा में कार्यरत एक गैर-लाभकारी संगठन, जिसकी स्थापना डॉ. आदित्य शुक्ला ने की।")}
       />
@@ -41,15 +42,14 @@ export default async function Foundation({ params }: { params: Promise<{ lang: s
         <div className="grid gap-12 border-t border-navy/15 pt-16 lg:grid-cols-12 lg:gap-x-16">
           <div className="lg:col-span-4">
             <h2 className="text-[clamp(1.9rem,3.6vw,2.8rem)] leading-[1.12]">{t("About the foundation", "फाउंडेशन के बारे में")}</h2>
-            <p className="mt-4 text-sm text-[#4a5560]">{t("Drawn from Dr. Shukla's CV and biodata.", "डॉ. शुक्ला के सी.वी. और परिचय-पत्र से।")}</p>
           </div>
 
           <div className="space-y-12 lg:col-span-8">
             <div className="space-y-5 text-[1.05rem] leading-relaxed text-[#3f4a55]">
-              <p>{t("Ananya Foundation is a non-profit organisation. Its stated purpose is women's empowerment. Dr. Aditya Shukla's CV lists it among his notable ventures and names him as its founder.",
-                    "अनन्या फाउंडेशन एक गैर-लाभकारी संगठन है। इसका घोषित उद्देश्य महिला सशक्तिकरण है। डॉ. आदित्य शुक्ला के सी.वी. में यह उनके उल्लेखनीय उपक्रमों में दर्ज है और उन्हें इसका संस्थापक बताया गया है।")}</p>
-              <p>{t("His biodata adds that the foundation is financed from its own resources and that it carries out social service in several states and cities, as well as in other parts of the country.",
-                    "उनके परिचय-पत्र में यह भी दर्ज है कि फाउंडेशन अपने ही संसाधनों से संचालित है और कई राज्यों व शहरों के साथ-साथ देश के अन्य भागों में भी समाज सेवा करता है।")}</p>
+              <p>{t("Ananya Foundation is a non-profit organisation working for women's empowerment. Dr. Aditya Shukla is its founder.",
+                    "अनन्या फाउंडेशन महिला सशक्तिकरण के लिए कार्यरत एक गैर-लाभकारी संगठन है। डॉ. आदित्य शुक्ला इसके संस्थापक हैं।")}</p>
+              <p>{t("The foundation is financed from its own resources and carries out social service in several states and cities, as well as in other parts of the country.",
+                    "फाउंडेशन अपने ही संसाधनों से संचालित है और कई राज्यों व शहरों के साथ-साथ देश के अन्य भागों में भी समाज सेवा करता है।")}</p>
             </div>
 
             <div>
@@ -57,7 +57,6 @@ export default async function Foundation({ params }: { params: Promise<{ lang: s
               <ul className="mt-5 flex flex-wrap gap-3">
                 {regions.map((r) => <li key={r} className="border border-[#8a6b3a]/50 px-4 py-2 font-serif text-lg text-navy">{r}</li>)}
               </ul>
-              <p className="mt-4 text-sm text-[#4a5560]">{t("These are the places named in the biodata. Project-level records are not part of the material supplied.", "ये वे स्थान हैं जिनका उल्लेख परिचय-पत्र में है। परियोजना-स्तर के अभिलेख उपलब्ध कराई गई सामग्री का भाग नहीं हैं।")}</p>
             </div>
 
             <dl className="border-t border-navy/20">

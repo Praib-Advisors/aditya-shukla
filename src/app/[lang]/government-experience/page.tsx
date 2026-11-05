@@ -20,7 +20,7 @@ export default async function Government({ params }: { params: Promise<{ lang: s
   const t = (en: string, hi: string) => (lang === "en" ? en : hi);
   return (
     <>
-      <PageHeader lang={lang} title={t("Ministry of Housing and Urban Affairs", "आवासन और शहरी कार्य मंत्रालय")} />
+      <PageHeader lang={lang} title={t("Ministry of Housing and Urban Affairs", "आवासन और शहरी कार्य मंत्रालय")} accent={t("Urban Affairs", "शहरी कार्य")} />
 
       <section className="wrap grid gap-12 py-16 md:py-24 lg:grid-cols-12">
         <div className="lg:sticky lg:top-24 lg:col-span-5 lg:self-start">
@@ -28,8 +28,8 @@ export default async function Government({ params }: { params: Promise<{ lang: s
           <div className="mt-6 space-y-4">
             <p>{t("An Additional Private Secretary supports a Minister's office with the written and logistical work that keeps ministerial business moving. In this post Dr. Shukla handled correspondence, notes and speeches, planned the Minister's visits, and tracked questions raised in Parliament.",
                   "अपर निजी सचिव मंत्री कार्यालय के उस लिखित और व्यवस्थागत कार्य में सहयोग करता है जिससे मंत्रालयीन कामकाज चलता रहता है। इस पद पर डॉ. शुक्ला ने पत्राचार, टिप्पणियों और भाषणों का कार्य देखा, मंत्री के दौरों की योजना बनाई और संसद में उठे प्रश्नों पर नज़र रखी।")}</p>
-            <p>{t("His CV also records work as a political analyst and investigator, and coordination with the BJP headquarters in New Delhi, among the responsibilities discharged during this employment.",
-                  "उनके सी.वी. में इस कार्यकाल के दौरान निभाए गए दायित्वों में राजनीतिक विश्लेषक एवं अन्वेषक के रूप में कार्य तथा नई दिल्ली स्थित भाजपा मुख्यालय से समन्वय भी दर्ज है।")}</p>
+            <p>{t("He also worked as a political analyst and investigator, and coordinated with the BJP headquarters in New Delhi, among the responsibilities discharged during this employment.",
+                  "इस कार्यकाल के दौरान निभाए गए दायित्वों में राजनीतिक विश्लेषक एवं अन्वेषक के रूप में कार्य तथा नई दिल्ली स्थित भाजपा मुख्यालय से समन्वय भी शामिल था।")}</p>
           </div>
           <div className="relative mt-10 aspect-[4/3] overflow-hidden bg-sand">
             <Pic id="meeting-office-flag" lang={lang} sizes="(min-width:1024px) 40vw, 92vw" className="size-full object-cover" />

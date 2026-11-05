@@ -15,4 +15,12 @@ export const site = {
     { id: "instagram", label: "Instagram", handle: "@dr_aditya_shukla", href: "https://www.instagram.com/dr_aditya_shukla/" },
   ] as const,
   facebookPage: "https://www.facebook.com/DrAdityaShuklaOfficial",
+  instagramProfile: "https://www.instagram.com/dr_aditya_shukla/",
+  /**
+   * LinkedIn gives no feed plugin, only single posts. Fill these in to show Dr. Shukla's own LinkedIn on the home
+   * page: the profile address, and the embed address of each post (LinkedIn > post > ... > Embed this post, the
+   * src="" of the iframe). Until then the card shows the NAREDCO Uttar Pradesh page instead.
+   */
+  linkedinProfile: "" as string,
+  linkedinPosts: [] as string[],
 };

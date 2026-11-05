@@ -19,7 +19,7 @@ export default async function Legal({ params }: { params: Promise<{ lang: string
   const t = (en: string, hi: string) => (lang === "en" ? en : hi);
   return (
     <>
-      <PageHeader lang={lang} title={title[lang]} />
+      <PageHeader lang={lang} title={title[lang]} accent={lang === "en" ? "Academic Profile" : "शैक्षणिक परिचय"} />
 
       <section className="wrap grid gap-12 py-16 md:py-24 lg:grid-cols-12">
         <div className="lg:col-span-6">
