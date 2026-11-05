@@ -11,3 +11,6 @@ scratchpad/
 
 # Claude Code notification signal files (created in the project root by the tooling)
 *claude-notify-signals*
+/dist/
+.vinext/
+.cloudflare/
