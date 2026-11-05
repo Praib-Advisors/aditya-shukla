@@ -24,7 +24,7 @@ export default async function Legal({ params }: { params: Promise<{ lang: string
       <section className="bg-sand">
         <div className="wrap py-16 md:py-24">
           <SectionHead title={t("Professional memberships, editorial role and honours", "व्यावसायिक सदस्यताएँ, संपादकीय दायित्व और सम्मान")} />
-          <dl className="mt-10 grid gap-px bg-navy/15 md:grid-cols-2">
+          <dl className="mt-10 grid gap-px bg-navy/15 md:grid-cols-2 md:[&>div:last-child:nth-child(odd)]:col-span-2">
             {memberships.map((m) => (
               <div key={m.title.en} className="bg-ivory p-7"><dt className="font-serif text-2xl text-navy">{m.title[lang]}</dt><dd className="mt-2">{m.detail[lang]}</dd></div>
             ))}

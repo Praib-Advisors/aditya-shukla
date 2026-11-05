@@ -48,17 +48,31 @@ html[lang="hi"] :is(h1, h2, h3, h4) { letter-spacing: 0; line-height: 1.35; }
 .prose-ed p { margin: 0 0 1.25rem; max-width: 64ch; }
 .prose-ed p:first-child::first-letter { }
 
-/* Body copy: runs flush to both edges of its column (no ragged right edge or empty strip), hyphenating long words so lines stay evenly spaced. */
-.para {
-  -webkit-hyphens: auto;
-  hyphens: auto;
-  hyphenate-limit-chars: 6 3 2;
-  overflow-wrap: break-word;
-  text-wrap: pretty;
-}
-/* Justified only from tablet width: in a phone-width column it opens large gaps between words. */
-@media (min-width: 768px) {
-  .para { text-align: justify; text-justify: inter-word; }
+/*
+ * Body copy, sitewide: every running paragraph in the page content runs flush to both edges of
+ * its column, hyphenating long words so lines stay evenly spaced. Justified only from tablet width up: in a phone-width
+ * column it opens large gaps between words, so phones keep a clean left edge.
+ * Left alone on purpose: centred or right-aligned blocks (and anything inside one), the large serif leads and bios,
+ * the intro line under each page title, paragraphs with a deliberate narrow measure (max-w-*), small uppercase labels, small print (text-xs/sm and the .8–.9rem sizes used for card text and captions),
+ * and anything inside a list, definition list or table (rows and cards), where short two-line cells would only open gaps. It sits in the base layer so any
+ * text-* utility on an element still wins, and `.para` can force it on an element the rules above skip.
+ */
+@layer base {
+  :where(main) p:not(.lead, .font-serif, .rise, [class*="max-w-"], [class*="text-center"], [class*="text-right"], [class*="uppercase"], [class*="tracking-"], [class*="text-xs"], [class*="text-sm"], [class*="text-[.8"], [class*="text-[.9"], :where([class*="text-center"], [class*="text-right"], li, dl, table) *),
+  .para {
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    hyphenate-limit-chars: 6 3 2;
+    overflow-wrap: break-word;
+    text-wrap: pretty;
+  }
+  @media (min-width: 768px) {
+    :where(main) p:not(.lead, .font-serif, .rise, [class*="max-w-"], [class*="text-center"], [class*="text-right"], [class*="uppercase"], [class*="tracking-"], [class*="text-xs"], [class*="text-sm"], [class*="text-[.8"], [class*="text-[.9"], :where([class*="text-center"], [class*="text-right"], li, dl, table) *),
+    .para {
+      text-align: justify;
+      text-justify: inter-word;
+    }
+  }
 }
 .lead { font-family: var(--font-serif); font-size: clamp(1.25rem, 2.2vw, 1.6rem); line-height: 1.5; color: var(--color-navy); }
 html[lang="hi"] .lead { line-height: 1.7; }
