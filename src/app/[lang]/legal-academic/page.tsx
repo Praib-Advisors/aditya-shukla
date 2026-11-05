@@ -29,7 +29,7 @@ export default async function Legal({ params }: { params: Promise<{ lang: string
               <div key={m.title.en} className="bg-ivory p-7"><dt className="font-serif text-2xl text-navy">{m.title[lang]}</dt><dd className="mt-2">{m.detail[lang]}</dd></div>
             ))}
           </dl>
-          <p className="mt-8 max-w-2xl">{t("His legal advisory responsibilities include the post of Chief Legal Advisor to the Legal and Compliance Cell of Aarnaa Enterprises.", "उनके विधिक सलाहकार संबंधी दायित्वों में आर्ना एंटरप्राइज़ेज़ के विधिक एवं अनुपालन प्रकोष्ठ के मुख्य विधिक सलाहकार का पद शामिल है।")}</p>
+          <p className="para mt-8">{t("His legal advisory responsibilities include the post of Chief Legal Advisor to the Legal and Compliance Cell of Aarnaa Enterprises.", "उनके विधिक सलाहकार संबंधी दायित्वों में आर्ना एंटरप्राइज़ेज़ के विधिक एवं अनुपालन प्रकोष्ठ के मुख्य विधिक सलाहकार का पद शामिल है।")}</p>
         </div>
       </section>
 

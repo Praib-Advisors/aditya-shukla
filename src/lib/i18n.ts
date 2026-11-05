@@ -24,4 +24,12 @@ export const pageSlugs = [
 ] as const;
 export type PageSlug = (typeof pageSlugs)[number];
 
-export const href = (lang: Lang, slug: PageSlug | string = "") => `/${lang}${slug ? `/${slug}` : ""}`;
+/**
+ * Public URL of a page. English is the only language, so the address carries no language prefix ("/about", not
+ * "/en/about"). The files still live under app/[lang]; src/proxy.ts rewrites "/about" to "/en/about" internally.
+ * If a second language returns, give it a prefix here and stop rewriting it to "en" in the proxy.
+ */
+export const href = (lang: Lang, slug: PageSlug | string = "") => {
+  void lang;
+  return slug ? `/${slug}` : "/";
+};

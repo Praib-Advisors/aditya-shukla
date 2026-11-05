@@ -46,7 +46,7 @@ export default async function Government({ params }: { params: Promise<{ lang: s
       <section className="bg-sand">
         <div className="wrap py-16 md:py-24">
           <SectionHead title={t("Divisional Railway Consultative Committee", "मंडल रेल उपयोगकर्ता परामर्शदात्री समिति")} />
-          <p className="mt-6 max-w-2xl">{t("From 2019 to 2021 Dr. Shukla was a member of a Divisional Railway Consultative Committee of the Ministry of Railways, Government of India. These committees are advisory forums through which railway users raise concerns with the administration.",
+          <p className="para mt-6 md:columns-2 md:gap-14">{t("From 2019 to 2021 Dr. Shukla was a member of a Divisional Railway Consultative Committee of the Ministry of Railways, Government of India. These committees are advisory forums through which railway users raise concerns with the administration.",
             "2019 से 2021 तक डॉ. शुक्ला भारत सरकार के रेल मंत्रालय की एक मंडल रेल उपयोगकर्ता परामर्शदात्री समिति के सदस्य रहे। ये समितियाँ ऐसे परामर्शदात्री मंच हैं जिनके माध्यम से रेल उपयोगकर्ता अपनी बातें प्रशासन तक पहुँचाते हैं।")}</p>
         </div>
       </section>

@@ -21,18 +21,28 @@ export function AnanyaFeature({ lang, link = false, as: Tag = "h2" }: { lang: La
   return (
     <section className="bg-[#F7F3EC]">
       <div className="wrap py-20 md:py-28">
-        <div className="grid items-center lg:grid-cols-12">
+        <div className="grid lg:grid-cols-12 lg:items-stretch">
           <Reveal variant="mask" className="relative lg:col-span-6 lg:col-start-1 lg:row-start-1">
-            <Parallax className="aspect-[4/3] bg-[#E8E0D2] shadow-[0_40px_70px_-40px_rgba(23,43,64,.6)] lg:aspect-auto lg:h-[32rem]">
-              <Image
-                src="/photos/women-empowerment-circle.jpg"
-                alt={t("Women sitting in a circle outdoors at an Ananya Foundation women empowerment programme, smiling and taking notes", "अनन्या फाउंडेशन के महिला सशक्तिकरण कार्यक्रम में बाहर घेरा बनाकर बैठी, मुस्कुराती और नोट्स लिखती महिलाएँ")}
-                fill
-                sizes="(min-width:1024px) 48vw, 92vw"
-                quality={85}
-                className="object-cover object-[75%_50%]"
-              />
-            </Parallax>
+            {/* The photograph runs the full height of the panel beside it; a thin gold frame sits offset behind it. */}
+            <div className="relative h-full">
+              <span aria-hidden className="absolute -bottom-3 -left-3 top-3 right-3 hidden border border-[#B58A43]/60 lg:block" />
+              <div className="relative z-10 h-full shadow-[0_40px_70px_-40px_rgba(23,43,64,.6)]">
+                <Parallax className="aspect-[4/3] bg-[#E8E0D2] lg:aspect-auto lg:h-full lg:min-h-[34rem]">
+                  <Image
+                    src="/photos/women-empowerment-circle.jpg"
+                    alt={t("Women sitting in a circle outdoors at an Ananya Foundation women empowerment programme, smiling and taking notes", "अनन्या फाउंडेशन के महिला सशक्तिकरण कार्यक्रम में बाहर घेरा बनाकर बैठी, मुस्कुराती और नोट्स लिखती महिलाएँ")}
+                    fill
+                    sizes="(min-width:1024px) 48vw, 92vw"
+                    quality={85}
+                    className="object-cover object-[62%_45%] contrast-[1.05] saturate-[1.08]"
+                  />
+                </Parallax>
+                <span aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-navy/70 to-transparent" />
+                <span className="absolute bottom-12 left-6 right-6 font-serif lg:bottom-5 text-lg italic text-ivory sm:text-xl">
+                  {t("Women's empowerment programme", "महिला सशक्तिकरण कार्यक्रम")}
+                </span>
+              </div>
+            </div>
           </Reveal>
 
           <Reveal variant="left" delay={200} className="relative z-10 -mt-8 mx-4 sm:mx-10 lg:col-span-6 lg:col-start-7 lg:row-start-1 lg:mx-0 lg:mt-0">
@@ -42,7 +52,7 @@ export function AnanyaFeature({ lang, link = false, as: Tag = "h2" }: { lang: La
                 {t("Empowering Women.", "महिलाओं को सशक्त बनाना।")}<br />
                 <span className="text-[#8a6b3a]">{t("Creating Opportunities.", "अवसरों का सृजन।")}</span>
               </Tag>
-              <p className="mt-6 max-w-lg text-[1.02rem] leading-relaxed text-[#3f4a55]">
+              <p className="para mt-6 text-[1.02rem] leading-relaxed text-[#3f4a55]">
                 {t("Ananya Foundation is a non-profit organisation founded by Dr. Aditya Shukla, working for the empowerment of women.",
                    "अनन्या फाउंडेशन एक गैर-लाभकारी संगठन है, जिसकी स्थापना डॉ. आदित्य शुक्ला ने की। यह महिलाओं के सशक्तिकरण के लिए कार्यरत है।")}
               </p>

@@ -41,7 +41,7 @@ export default async function Corporate({ params }: { params: Promise<{ lang: st
           <div className="lg:col-span-6">
             <SectionHead title={t("International engagements", "अंतरराष्ट्रीय संपर्क")} />
             <div className="mt-6 space-y-4">
-              <p>{t("Dr. Shukla has visited the United Arab Emirates and a few other countries. The purpose was to look for opportunities to build connections and develop resources towards memoranda of understanding intended to support India's economy.",
+              <p className="para">{t("Dr. Shukla has visited the United Arab Emirates and a few other countries. The purpose was to look for opportunities to build connections and develop resources towards memoranda of understanding intended to support India's economy.",
                     "डॉ. शुक्ला ने संयुक्त अरब अमीरात और कुछ अन्य देशों की यात्राएँ की हैं। इनका उद्देश्य संपर्क बनाने और ऐसे समझौता-ज्ञापनों की दिशा में संसाधन विकसित करने के अवसर तलाशना था, जो भारत की अर्थव्यवस्था को गति दे सकें।")}</p>
               <p>{t("These are exploratory efforts.", "ये अन्वेषणात्मक प्रयास हैं।")}</p>
             </div>

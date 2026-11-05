@@ -46,9 +46,9 @@ export default async function Foundation({ params }: { params: Promise<{ lang: s
 
           <div className="space-y-12 lg:col-span-8">
             <div className="space-y-5 text-[1.05rem] leading-relaxed text-[#3f4a55]">
-              <p>{t("Ananya Foundation is a non-profit organisation working for women's empowerment. Dr. Aditya Shukla is its founder.",
+              <p className="para">{t("Ananya Foundation is a non-profit organisation working for women's empowerment. Dr. Aditya Shukla is its founder.",
                     "अनन्या फाउंडेशन महिला सशक्तिकरण के लिए कार्यरत एक गैर-लाभकारी संगठन है। डॉ. आदित्य शुक्ला इसके संस्थापक हैं।")}</p>
-              <p>{t("The foundation is financed from its own resources and carries out social service in several states and cities, as well as in other parts of the country.",
+              <p className="para">{t("The foundation is financed from its own resources and carries out social service in several states and cities, as well as in other parts of the country.",
                     "फाउंडेशन अपने ही संसाधनों से संचालित है और कई राज्यों व शहरों के साथ-साथ देश के अन्य भागों में भी समाज सेवा करता है।")}</p>
             </div>
 

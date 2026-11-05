@@ -10,7 +10,7 @@ import { nav, ui } from "@/content/ui";
 import { site } from "@/lib/site";
 
 export function Navbar({ lang }: { lang: Lang }) {
-  const pathname = usePathname() || `/${lang}`;
+  const pathname = usePathname() || href(lang);
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
