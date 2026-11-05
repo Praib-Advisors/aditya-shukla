@@ -23,20 +23,20 @@ export function AnanyaFeature({ lang, link = false, as: Tag = "h2" }: { lang: La
       <div className="wrap py-20 md:py-28">
         <div className="grid items-center lg:grid-cols-12">
           <Reveal variant="mask" className="relative lg:col-span-6 lg:col-start-1 lg:row-start-1">
-            <Parallax className="aspect-[4/3] bg-[#E8E0D2] shadow-[0_40px_70px_-40px_rgba(23,43,64,.6)] lg:aspect-auto lg:h-[36rem]">
+            <Parallax className="aspect-[4/3] bg-[#E8E0D2] shadow-[0_40px_70px_-40px_rgba(23,43,64,.6)] lg:aspect-auto lg:h-[32rem]">
               <Image
-                src="/photos/women-empowerment.jpg"
-                alt={t("A group of women seated together outdoors, smiling with their fists raised", "बाहर एक साथ बैठी महिलाओं का समूह, मुस्कुराते हुए मुट्ठियाँ उठाए")}
+                src="/photos/women-empowerment-circle.jpg"
+                alt={t("Women sitting in a circle outdoors at an Ananya Foundation women empowerment programme, smiling and taking notes", "अनन्या फाउंडेशन के महिला सशक्तिकरण कार्यक्रम में बाहर घेरा बनाकर बैठी, मुस्कुराती और नोट्स लिखती महिलाएँ")}
                 fill
                 sizes="(min-width:1024px) 48vw, 92vw"
                 quality={85}
-                className="object-cover object-[50%_40%]"
+                className="object-cover object-[75%_50%]"
               />
             </Parallax>
           </Reveal>
 
-          <Reveal variant="left" delay={200} className="relative z-10 -mt-8 mx-4 sm:mx-10 lg:col-span-7 lg:col-start-6 lg:row-start-1 lg:mx-0 lg:mt-0">
-            <div className="border border-[#B58A43]/30 bg-[#E8E0D2] p-8 text-navy shadow-[0_40px_80px_-44px_rgba(23,43,64,.5)] sm:p-12 lg:py-14 lg:pl-20 lg:pr-14">
+          <Reveal variant="left" delay={200} className="relative z-10 -mt-8 mx-4 sm:mx-10 lg:col-span-6 lg:col-start-7 lg:row-start-1 lg:mx-0 lg:mt-0">
+            <div className="border border-[#B58A43]/30 bg-[#E8E0D2] p-8 text-navy shadow-[0_40px_80px_-44px_rgba(23,43,64,.5)] sm:p-12 lg:py-14 lg:pl-14 lg:pr-12">
               <p className="font-serif text-lg italic text-[#8a6b3a]">{t("Social initiatives", "सामाजिक पहल")}</p>
               <Tag className="mt-3 text-[clamp(2.1rem,4.2vw,3.5rem)] leading-[1.08]">
                 {t("Empowering Women.", "महिलाओं को सशक्त बनाना।")}<br />

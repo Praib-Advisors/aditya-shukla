@@ -50,7 +50,7 @@ export default async function Ideals({ params }: { params: Promise<{ lang: strin
                 width={1280}
                 height={1600}
                 sizes="(min-width: 1024px) 40vw, 90vw"
-                quality={90}
+                quality={85}
                 priority
                 className="size-full object-cover"
               />

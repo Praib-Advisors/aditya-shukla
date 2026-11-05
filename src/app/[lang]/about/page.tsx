@@ -56,7 +56,7 @@ export default async function About({ params }: { params: Promise<{ lang: string
       <section className="wrap grid gap-y-14 py-16 md:py-24 lg:grid-cols-12 lg:gap-x-14">
         <div className="relative z-10 lg:sticky lg:top-24 lg:col-span-5 lg:self-start">
           <PhotoSlider
-            className="aspect-[4/5]"
+            className="aspect-[5/7]"
             autoplay={3000}
             label={t("Photographs", "चित्र")}
             prev={t("Previous photograph", "पिछला चित्र")}

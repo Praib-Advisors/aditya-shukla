@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import type { Lang } from "@/lib/i18n";
-import { idealCategories, ideals, type IdealCategory } from "@/content/ideals";
+import { idealCategories, idealOrder, ideals, type IdealCategory } from "@/content/ideals";
 import { Reveal } from "@/components/Reveal";
 
 /**
@@ -13,7 +13,8 @@ import { Reveal } from "@/components/Reveal";
  */
 export function IdealsGallery({ lang, exclude }: { lang: Lang; exclude?: string }) {
   const [filter, setFilter] = useState<IdealCategory | "all">("all");
-  const list = ideals.filter((i) => i.slug !== exclude);
+  const rank = (slug: string) => { const n = idealOrder.indexOf(slug); return n < 0 ? idealOrder.length : n; };
+  const list = ideals.filter((i) => i.slug !== exclude).sort((a, b) => rank(a.slug) - rank(b.slug));
   const shown = filter === "all" ? list : list.filter((i) => i.category === filter);
   const chips: { id: IdealCategory | "all"; label: string; n: number }[] = [
     { id: "all", label: lang === "en" ? "All" : "सभी", n: list.length },

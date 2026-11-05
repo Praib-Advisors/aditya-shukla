@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import type { Lang } from "@/lib/i18n";
 import { site } from "@/lib/site";
+import { EmbedWidget } from "./EmbedWidget";
 import { FacebookFeed } from "./FacebookFeed";
 import { FacebookIcon, InstagramIcon, LinkedinIcon, socialIcons } from "./icons";
 import { chapterOffice, chapterSocials } from "@/content/naredco";
@@ -75,23 +76,45 @@ export function StayConnected({ lang }: { lang: Lang }) {
         <div className="mt-10 grid grid-cols-[minmax(0,1fr)] gap-x-6 gap-y-12 lg:grid-cols-3">
           <Card icon={<FacebookIcon className="size-5" />} name="Facebook" lang={lang} openLabel={copy.openFb[lang]} href={site.facebookPage}>
             <Placeholder icon={<FacebookIcon className="size-7" />} name={site.name[lang]} lang={lang} />
-            <FacebookFeed page={site.facebookPage} height={HEIGHT} locale={lang === "hi" ? "hi_IN" : "en_GB"} title={`Facebook: ${site.name[lang]}`} />
+            {site.widgets.facebook ? (
+              <div className="relative size-full overflow-y-auto bg-white" data-lenis-prevent><EmbedWidget {...site.widgets.facebook} /></div>
+            ) : site.facebookPosts.length > 0 ? (
+              <div className="relative size-full space-y-4 overflow-y-auto bg-white p-3" data-lenis-prevent>
+                {site.facebookPosts.map((post) => (
+                  <iframe
+                    key={post}
+                    src={`https://www.facebook.com/plugins/post.php?${new URLSearchParams({ href: post, width: "500", show_text: "true" }).toString()}`}
+                    title={`Facebook: ${site.name[lang]}`}
+                    loading="lazy"
+                    allow="encrypted-media"
+                    className="mx-auto block h-[520px] w-full max-w-[500px] border-0"
+                  />
+                ))}
+              </div>
+            ) : (
+              <FacebookFeed page={site.facebookPage} height={HEIGHT} locale={lang === "hi" ? "hi_IN" : "en_GB"} title={`Facebook: ${site.name[lang]}`} />
+            )}
           </Card>
 
           <Card icon={<InstagramIcon className="size-5" />} name="Instagram" lang={lang} openLabel={copy.openIg[lang]} href={site.instagramProfile}>
             <Placeholder icon={<InstagramIcon className="size-7" />} name="@dr_aditya_shukla" lang={lang} />
-            <iframe
-              src={`${site.instagramProfile}embed`}
-              title={`Instagram: ${site.name[lang]}`}
-              loading="lazy"
-              scrolling="yes"
-              allowTransparency
-              className="relative block size-full border-0"
-            />
+            {site.widgets.instagram ? (
+              <div className="relative size-full overflow-y-auto bg-white" data-lenis-prevent><EmbedWidget {...site.widgets.instagram} /></div>
+            ) : (
+              <iframe
+                src={`${site.instagramProfile}embed`}
+                title={`Instagram: ${site.name[lang]}`}
+                loading="lazy"
+                scrolling="yes"
+                className="relative block size-full border-0"
+              />
+            )}
           </Card>
 
           <Card icon={<LinkedinIcon className="size-5" />} name="LinkedIn" lang={lang} openLabel={copy.openLi[lang]} href={liHref}>
-            {site.linkedinPosts.length > 0 ? (
+            {site.widgets.linkedin ? (
+              <div className="relative size-full overflow-y-auto bg-white" data-lenis-prevent><EmbedWidget {...site.widgets.linkedin} /></div>
+            ) : site.linkedinPosts.length > 0 ? (
               <div className="size-full space-y-4 overflow-y-auto p-3" data-lenis-prevent>
                 {site.linkedinPosts.map((src) => (
                   <iframe key={src} src={src} title={`LinkedIn: ${site.name[lang]}`} loading="lazy" className="block h-[480px] w-full border-0" />

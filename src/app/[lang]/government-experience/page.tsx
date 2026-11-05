@@ -3,7 +3,7 @@ import { getLang } from "@/lib/page";
 import { pageMeta } from "@/lib/seo";
 import { governmentDuties } from "@/content/profile";
 import { Reveal } from "@/components/Reveal";
-import { PageHeader, Pic, SectionHead } from "@/components/parts";
+import { PageHeader, SectionHead } from "@/components/parts";
 
 const title = { en: "Government Experience", hi: "सरकारी अनुभव" };
 
@@ -30,9 +30,6 @@ export default async function Government({ params }: { params: Promise<{ lang: s
                   "अपर निजी सचिव मंत्री कार्यालय के उस लिखित और व्यवस्थागत कार्य में सहयोग करता है जिससे मंत्रालयीन कामकाज चलता रहता है। इस पद पर डॉ. शुक्ला ने पत्राचार, टिप्पणियों और भाषणों का कार्य देखा, मंत्री के दौरों की योजना बनाई और संसद में उठे प्रश्नों पर नज़र रखी।")}</p>
             <p>{t("He also worked as a political analyst and investigator, and coordinated with the BJP headquarters in New Delhi, among the responsibilities discharged during this employment.",
                   "इस कार्यकाल के दौरान निभाए गए दायित्वों में राजनीतिक विश्लेषक एवं अन्वेषक के रूप में कार्य तथा नई दिल्ली स्थित भाजपा मुख्यालय से समन्वय भी शामिल था।")}</p>
-          </div>
-          <div className="relative mt-10 aspect-[4/3] overflow-hidden bg-sand">
-            <Pic id="meeting-office-flag" lang={lang} sizes="(min-width:1024px) 40vw, 92vw" className="size-full object-cover" />
           </div>
         </div>
         <div className="lg:col-span-7">

@@ -138,5 +138,23 @@ export const ideals: Ideal[] = [
   },
 ];
 
+/**
+ * The order of the cards in the grid: the highest office first. Atal Bihari Vajpayee is not listed because he is
+ * featured above the grid. Sitting and former heads of government and state come first, then the Chief Minister, then
+ * the founders and leaders of the Jana Sangh and the Sangh, and last those known for service and thought rather than
+ * for an office.
+ */
+export const idealOrder = [
+  "narendra-modi",
+  "apj-abdul-kalam",
+  "yogi-adityanath",
+  "syama-prasad-mukherjee",
+  "deendayal-upadhyaya",
+  "hedgewar",
+  "golwalkar",
+  "nanaji-deshmukh",
+  "swami-vivekananda",
+];
+
 /** The ideal featured at the top of the Ideals page, with a large portrait and a fixed saying. Not repeated in the grid below. */
 export const featuredIdeal = { by: "atal-bihari-vajpayee" };

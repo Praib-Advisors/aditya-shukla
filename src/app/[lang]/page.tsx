@@ -7,6 +7,7 @@ import { site } from "@/lib/site";
 import { ui } from "@/content/ui";
 import { bioShort, governmentDuties, timeline } from "@/content/profile";
 import { chapterActivity } from "@/content/naredco";
+import { photoById } from "@/content/media";
 import { Pic, SectionHead, TextLink } from "@/components/parts";
 import { Reveal } from "@/components/Reveal";
 import { HeroSlider } from "@/components/HeroSlider";
@@ -25,13 +26,19 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   });
 }
 
-/** Home-page gallery: five tiles that fill a four-column, three-row block with no gaps (desktop). */
-const mosaic = [
-  { id: "up-real-estate-summit-2026", cls: "md:row-span-3", pos: "50% 55%" },
-  { id: "memento-minister-2", cls: "md:col-span-2 md:row-span-2", pos: "50% 40%" },
-  { id: "supreme-court-steps", cls: "md:row-span-3", pos: "65% 70%" },
-  { id: "portrait-summit", cls: "", pos: "50% 30%" },
-  { id: "meeting-office-flag", cls: "", pos: "50% 40%" },
+/**
+ * Home-page gallery: every photograph is shown whole, in its own proportions. Each row's tiles share the row's width
+ * in proportion to their aspect ratios, so a row has one height and no tile is cropped. Three across from tablet width
+ * up, two across on a phone.
+ */
+const mosaicWide = [
+  ["up-real-estate-summit-2026", "memento-minister-2", "supreme-court-steps"],
+  ["portrait-summit", "meeting-office-flag", "summit-banner-wide"],
+];
+const mosaicNarrow = [
+  ["up-real-estate-summit-2026", "memento-minister-2"],
+  ["supreme-court-steps", "portrait-summit"],
+  ["meeting-office-flag", "summit-banner-wide"],
 ];
 
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
@@ -75,8 +82,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
           <div className="relative lg:sticky lg:top-24 lg:col-span-5 lg:self-start">
             <Reveal variant="mask" className="relative">
               <div className="relative aspect-[3/4] overflow-hidden bg-sand shadow-[0_30px_60px_-30px_rgba(23,43,64,.55)]">
-                {/* The source frame is a wide courthouse shot with him small at the lower right; zoom onto him. */}
-                <Pic id="supreme-court-steps" lang={lang} sizes="(min-width:1024px) 38vw, 92vw" className="size-full origin-[67%_78%] scale-[1.7] object-cover" position="50% 50%" />
+                <Pic id="supreme-court-steps" lang={lang} sizes="(min-width:1024px) 38vw, 92vw" className="size-full object-cover" position="50% 50%" />
               </div>
             </Reveal>
           </div>
@@ -114,11 +120,10 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                 <Reveal variant="mask" delay={i * 160}>
                 <div className="group relative aspect-[3/4] overflow-hidden bg-slate shadow-[0_30px_60px_-34px_rgba(23,43,64,.6)]">
                   <Pic id={x.photo} lang={lang} sizes="(min-width:768px) 40vw, 92vw" className="size-full object-cover transition duration-700 group-hover:scale-[1.05]" />
-                  <div aria-hidden className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-navy/95 via-navy/65 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 p-5 text-ivory">
-                    {x.date && <p className="text-xs font-medium tracking-wide text-ivory/85">{x.date.en}</p>}
-                    <h3 className="mt-1 text-2xl leading-tight !text-ivory">{x.title[lang]}</h3>
-                  </div>
+                </div>
+                <div className="mt-5">
+                  {x.date && <p className="text-sm font-medium text-gold-deep">{x.date[lang]}</p>}
+                  <h3 className="mt-1 text-2xl leading-tight">{x.title[lang]}</h3>
                 </div>
                 </Reveal>
               </li>
@@ -224,17 +229,30 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             <SectionHead title={t("Photographic archive", "छायाचित्र संग्रह")} />
             <TextLink lang={lang} to="media">{ui.viewAll[lang]}</TextLink>
           </div>
-          <div className="grid grid-cols-2 gap-3 md:auto-rows-[12rem] md:grid-cols-4">
-            {mosaic.map((m, i) => (
-              <Reveal key={m.id} variant="mask" delay={i * 110} className={m.cls}>
-              <Link href={href(lang, "media")} aria-label={t("Open the media archive", "मीडिया संग्रह खोलें")}
-                className="group relative block size-full aspect-square overflow-hidden bg-ivory md:aspect-auto">
-                <Pic id={m.id} lang={lang} sizes="(min-width:768px) 30vw, 46vw" className="size-full object-cover transition duration-700 group-hover:scale-[1.06]" position={m.pos} />
-                <span aria-hidden className="absolute inset-0 bg-navy/0 transition duration-500 group-hover:bg-navy/25" />
-              </Link>
-              </Reveal>
-            ))}
-          </div>
+          {[{ rows: mosaicWide, show: "hidden md:flex" }, { rows: mosaicNarrow, show: "flex md:hidden" }].map(({ rows, show }) => (
+            <div key={show} className={`flex-col gap-3 ${show}`}>
+              {rows.map((row) => (
+                <div key={row.join()} className="flex gap-3">
+                  {row.map((id, i) => {
+                    const ph = photoById(id);
+                    const r = ph.w / ph.h;
+                    return (
+                      <div key={id} style={{ flex: `${r} 1 0%` }} className="min-w-0">
+                        <Reveal variant="mask" delay={i * 110}>
+                          <Link href={href(lang, "media")} aria-label={t("Open the media archive", "मीडिया संग्रह खोलें")}
+                            style={{ aspectRatio: r }}
+                            className="group relative block w-full overflow-hidden bg-ivory">
+                            <Pic id={id} lang={lang} sizes="(min-width:768px) 40vw, 50vw" className="size-full object-cover transition duration-700 group-hover:scale-[1.04]" />
+                            <span aria-hidden className="absolute inset-0 bg-navy/0 transition duration-500 group-hover:bg-navy/25" />
+                          </Link>
+                        </Reveal>
+                      </div>
+                    );
+                  })}
+                </div>
+              ))}
+            </div>
+          ))}
         </div>
       </section>
 
