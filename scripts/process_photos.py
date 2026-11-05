@@ -27,7 +27,7 @@ PICK = {
     "meeting-formal-1": "737325517", "meeting-formal-2": "738653811", "meeting-office-1": "813832331",
     "meeting-office-2": "821597876", "meeting-office-3": "823234760", "meeting-hall-1": "764110937",
     "meeting-couch": "777716643", "meeting-stage": "736413327",
-    "org-desk": "611250099", "org-session-1": "705306464", "org-session-2": "705464077",
+    "org-desk": "611250099",
     "org-memento-desk": "734128974",
     # Added later, from the photographs that were not yet on the site.
     "news-railway-committee": "104969516", "meeting-bouquet-4": "148681277", "org-backdrop-1": "151459730",

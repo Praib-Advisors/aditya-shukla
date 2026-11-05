@@ -106,8 +106,6 @@ export const photos: Photo[] = [
   p("meeting-office-4", "government", "Meeting in a government office", "एक सरकारी कार्यालय में भेंट"),
 
   p("org-desk", "political", "Meeting in an organisational office", "एक संगठनात्मक कार्यालय में भेंट"),
-  p("org-session-1", "political", "At an organisational gathering", "एक संगठनात्मक बैठक में"),
-  p("org-session-2", "political", "At an organisational gathering", "एक संगठनात्मक बैठक में"),
   p("org-backdrop-1", "political", ...gathering),
   p("org-session-3", "political", ...gathering),
   p("org-session-4", "political", ...gathering),
