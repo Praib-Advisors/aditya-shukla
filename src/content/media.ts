@@ -124,5 +124,18 @@ export const news: Photo[] = [
   p("news-railway-committee", "news", "Newspaper report: “Dr. Ritesh and Aditya become members of the Divisional Railway Consultative Committee”", "समाचार: “डॉ. रितेश व आदित्य बने मण्डल रेल उपयोगकर्ता सलाहकार समिति के सदस्य”"),
 ];
 
+/**
+ * The home page's "Photographic archive" carousel: the photographs the client numbered 1 to 16 (and "16 (2)"), in that
+ * order (scripts/process_archive.py writes archive-01 ... archive-17 from them). They are not part of the Media page's
+ * catalogue above. The captions only say what the picture shows; nobody is named, because no source names them.
+ */
+const fromArchive = ["From the photographic archive", "छायाचित्र संग्रह से"] as const;
+const archiveKinds: (readonly [string, string])[] = [
+  courtesy, courtesy, courtesy, courtesy, memento, bouquet, courtesy, fromArchive, bouquet,
+  memento, bouquet, bouquet, bouquet, courtesy, courtesy, bouquet, fromArchive,
+];
+export const archivePhotos: Photo[] = archiveKinds.map((kind, i) => p(`archive-${String(i + 1).padStart(2, "0")}`, "official", ...kind));
+
 export const homeStrip = ["memento-minister-2", "summit-banner-wide", "supreme-court-steps", "meeting-office-flag"];
-export const photoById = (id: string) => photos.find((x) => x.id === id)!;
+const byId = new Map([...photos, ...archivePhotos].map((x) => [x.id, x]));
+export const photoById = (id: string) => byId.get(id)!;

@@ -49,7 +49,7 @@ export function Stats({ lang }: { lang: Lang }) {
                 <dt className="mt-8 font-serif text-[clamp(4.5rem,8vw,6.5rem)] leading-none text-gold">
                   <CountUp to={s.value} />
                 </dt>
-                <dd className="mt-6 border-t border-white/15 pt-5">
+                <dd className="mt-6 border-t border-white/15 pt-5 text-left">
                   <span className="block font-serif text-2xl leading-snug text-ivory">{s.title[lang]}</span>
                   <span className="mt-2 block text-[.9rem] leading-relaxed text-ivory/65">{s.detail[lang]}</span>
                 </dd>

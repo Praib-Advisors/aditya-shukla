@@ -7,10 +7,11 @@ import { site } from "@/lib/site";
 import { ui } from "@/content/ui";
 import { bioShort, governmentDuties, timeline } from "@/content/profile";
 import { chapterActivity } from "@/content/naredco";
-import { photoById } from "@/content/media";
+import { archivePhotos } from "@/content/media";
 import { Pic, SectionHead, TextLink } from "@/components/parts";
 import { Reveal } from "@/components/Reveal";
 import { HeroSlider } from "@/components/HeroSlider";
+import { PhotoCarousel } from "@/components/PhotoCarousel";
 import { StayConnected } from "@/components/StayConnected";
 import { JourneyTimeline } from "@/components/JourneyTimeline";
 import { LeadershipBand } from "@/components/LeadershipBand";
@@ -26,20 +27,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   });
 }
 
-/**
- * Home-page gallery: every photograph is shown whole, in its own proportions. Each row's tiles share the row's width
- * in proportion to their aspect ratios, so a row has one height and no tile is cropped. Three across from tablet width
- * up, two across on a phone.
- */
-const mosaicWide = [
-  ["up-real-estate-summit-2026", "memento-minister-2", "supreme-court-steps"],
-  ["portrait-summit", "meeting-office-flag", "summit-banner-wide"],
-];
-const mosaicNarrow = [
-  ["up-real-estate-summit-2026", "memento-minister-2"],
-  ["supreme-court-steps", "portrait-summit"],
-  ["meeting-office-flag", "summit-banner-wide"],
-];
+/** Where each archive photograph sits in its cell (CSS object-position), by position in the carousel. Default 50% 30%. */
+const archivePosition: Record<number, string> = {
+  1: "50% 40%", 3: "50% 41%", 7: "50% 8%", 8: "50% 42%", 12: "50% 40%", 13: "50% 22%", 14: "50% 35%",
+};
 
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
   const lang = await getLang(params);
@@ -62,16 +53,18 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
           />
         </picture>
 
-        {/* Slide 2 uses artwork sized to the carousel's portrait and landscape aspect ratios. */}
+        {/* Slide 2 uses artwork sized to the carousel's portrait and landscape aspect ratios. The wide banner is 16:9;
+            on very wide screens the slider crops it to about 2.2:1, so it is anchored low (md:object-[50%_65%]) to
+            keep the caption line at the bottom in view. */}
         <picture className="block size-full">
-          <source media="(min-width: 768px), (orientation: landscape)" srcSet="/hero/slide2-desktop.jpg" />
+          <source media="(min-width: 768px), (orientation: landscape)" srcSet="/hero/slide2-desktop-v3.jpg" />
           <img
-            src="/hero/slide2-mobile.jpg"
+            src="/hero/slide2-mobile-v2.jpg"
             alt={t("Dr. Aditya Shukla with leaders, under the line “BJP by Birth, Dedicated to Public Service”", "नेताओं के साथ डॉ. आदित्य शुक्ला, पंक्ति “BJP by Birth, Dedicated to Public Service” के साथ")}
-            width={1080}
-            height={1920}
+            width={1440}
+            height={2560}
             loading="lazy"
-            className="size-full origin-bottom object-cover max-md:scale-[1.05] md:origin-center md:scale-100"
+            className="size-full origin-bottom object-cover max-md:scale-[1.05] md:origin-center md:scale-100 md:object-[50%_65%]"
           />
         </picture>
       </HeroSlider>
@@ -148,7 +141,27 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         </div>
       </section>
 
-      <ShapeDivider fill="navy" flip />
+      <ShapeDivider fill="sand" flip />
+
+      {/* Photographic archive: one row, two photographs at a time (no photograph twice in a row), changed with arrows, dots or swipe */}
+      <section className="bg-sand">
+        <div className="wrap py-24 md:py-32">
+          <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
+            <SectionHead title={t("Photographic archive", "छायाचित्र संग्रह")} />
+            <TextLink lang={lang} to="media">{ui.viewAll[lang]}</TextLink>
+          </div>
+          <PhotoCarousel labels={{ prev: "Previous photographs", next: "Next photographs", region: t("Photographs", "छायाचित्र"), page: "Photographs" }}>
+            {archivePhotos.map(({ id }, i) => (
+              <Link key={id} href={href(lang, "media")} className="group block size-full overflow-hidden">
+                {/* The photograph fills its cell edge to edge, no frame or backdrop. Where it sits in the cell is set per photograph (archivePosition) so faces stay in view. */}
+                <Pic id={id} lang={lang} loading="eager" position={archivePosition[i] ?? "50% 30%"} sizes="(min-width:768px) 600px, 100vw" className="size-full object-cover" />
+              </Link>
+            ))}
+          </PhotoCarousel>
+        </div>
+      </section>
+
+      <ShapeDivider fill="navy" />
 
       {/* Government experience: statement above a ruled grid, no photograph */}
       <section className="surface-dark bg-navy text-ivory">
@@ -220,43 +233,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         </div>
       </section>
 
-      <ShapeDivider fill="sand" flip />
-
-      {/* Media: magazine-style gallery in each photograph's own proportions */}
-      <section className="bg-sand">
-        <div className="wrap py-24 md:py-32">
-          <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
-            <SectionHead title={t("Photographic archive", "छायाचित्र संग्रह")} />
-            <TextLink lang={lang} to="media">{ui.viewAll[lang]}</TextLink>
-          </div>
-          {[{ rows: mosaicWide, show: "hidden md:flex" }, { rows: mosaicNarrow, show: "flex md:hidden" }].map(({ rows, show }) => (
-            <div key={show} className={`flex-col gap-3 ${show}`}>
-              {rows.map((row) => (
-                <div key={row.join()} className="flex gap-3">
-                  {row.map((id, i) => {
-                    const ph = photoById(id);
-                    const r = ph.w / ph.h;
-                    return (
-                      <div key={id} style={{ flex: `${r} 1 0%` }} className="min-w-0">
-                        <Reveal variant="mask" delay={i * 110}>
-                          <Link href={href(lang, "media")} aria-label={t("Open the media archive", "मीडिया संग्रह खोलें")}
-                            style={{ aspectRatio: r }}
-                            className="group relative block w-full overflow-hidden bg-ivory">
-                            <Pic id={id} lang={lang} sizes="(min-width:768px) 40vw, 50vw" className="size-full object-cover transition duration-700 group-hover:scale-[1.04]" />
-                            <span aria-hidden className="absolute inset-0 bg-navy/0 transition duration-500 group-hover:bg-navy/25" />
-                          </Link>
-                        </Reveal>
-                      </div>
-                    );
-                  })}
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <ShapeDivider fill="navy" />
+      <ShapeDivider fill="navy" flip />
 
       <Stats lang={lang} />
 

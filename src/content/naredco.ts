@@ -50,7 +50,7 @@ export const officeBearers: { group: L; people: { name: string; role: L }[] }[] 
 /** Chapter events and meetings that have a photograph supplied by the chapter's site. */
 export const chapterActivity: { photo: string; title: L; date?: L; note?: L }[] = [
   {
-    photo: "up-real-estate-summit-2026",
+    photo: "summit-with-delegate",
     title: { en: "UP Real Estate Summit 2026", hi: "यूपी रियल एस्टेट समिट 2026" },
     date: { en: "21 May 2026, Lucknow", hi: "21 मई 2026, लखनऊ" },
   },

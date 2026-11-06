@@ -8,9 +8,11 @@ import { Reveal } from "@/components/Reveal";
 
 /** A catalogue photograph, sized from its real dimensions so nothing shifts while loading. */
 export function Pic({
-  id, lang, sizes, className = "", priority = false, position = "center", alt,
+  id, lang, sizes, className = "", priority = false, position = "center", alt, loading,
 }: {
   id: string; lang: Lang; sizes: string; className?: string; priority?: boolean; position?: string; alt?: string;
+  /** "eager" for pictures that are off screen at first but slide in soon (a carousel), so they are not still loading when they arrive. */
+  loading?: "eager" | "lazy";
 }) {
   const ph = photoById(id);
   return (
@@ -22,6 +24,7 @@ export function Pic({
       sizes={sizes}
       quality={85}
       priority={priority}
+      loading={priority ? undefined : loading}
       className={className}
       style={{ objectPosition: position }}
     />
